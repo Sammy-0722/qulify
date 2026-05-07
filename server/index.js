@@ -10,7 +10,7 @@ const authRoutes = require('./routes/auth');
 const app = express();
 
 app.use(cors({
-  origin: 'https://qulify.vercel.app',
+  origin: 'https://qulify-zeta.vercel.app',
   credentials: true
 }))
 app.use(express.json());
