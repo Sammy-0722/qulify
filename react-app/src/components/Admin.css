@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Coffee Shop Palette ─────────────────────────────── */
+:root {
+  --cream:      #FAF6EF;
+  --parchment:  #F0E8D8;
+  --beige:      #E5D9C3;
+  --sand:       #C9B99A;
+  --terra:      #B5622A;
+  --terra-dark: #8C4720;
+  --terra-faint:#F5EBE0;
+  --sage:       #6B8C6B;
+  --sage-light: #A8C4A0;
+  --sage-faint: #E6EFE6;
+  --ink:        #2C2416;
+  --ink-light:  #6B5D4A;
+  --ink-faint:  #A89880;
+  --warm-white: #FDFBF7;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+}
+
+/* ── Nav ─────────────────────────────────────────────── */
+nav {
+  background-color: var(--parchment);
+  padding: 5px;
+  border-bottom: 1.5px solid var(--beige);
+  color: var(--ink);
+  height: 40px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 30px;
+  top: 0px;
+}
+
+nav ul li {
+  list-style: none;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+}
+
+.navbtns {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  color: var(--ink-light);
+}
+
+.sectionline {
+  border-bottom: 1.5px solid var(--beige);
+}
+
+/* ── Admin Section ───────────────────────────────────── */
+.Adminheading {
+  margin-bottom: 9px;
+}
+
+.AdminSection {
+  color: var(--ink);
+  margin: 4px;
+  padding: 10px;
+}
+
+/* ── Overview Cards ──────────────────────────────────── */
+.Adminviewcardcontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.Admincard {
+  flex: 1 1 1%;
+  background-color: var(--parchment);
+  text-align: center;
+  border-radius: 14px 10px 14px 10px;
+  padding: 10px;
+  border: 1.5px solid var(--sand);
+  box-shadow: 3px 3px 0px var(--sand);
+}
+
+.Cardheading1 {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--terra);
+  line-height: 1.1;
+}
+
+.Cardheading {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.des {
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
+/* ── Second Container ────────────────────────────────── */
+.secondconatiner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 2px;
+  padding: 10px;
+}
+
+/* ── Queue Status Row ────────────────────────────────── */
+.Queuestatussec {
+  background-color: var(--parchment);
+  display: flex;
+  justify-content: space-between;
+  margin: 4px;
+  padding: 10px;
+  border-radius: 12px 8px 12px 8px;
+  border: 1.5px solid var(--beige);
+  align-items: center;
+  box-shadow: 2px 2px 0px var(--beige);
+}
+
+.queuestatusheading {
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.queuestatusdescription {
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-top: 5px;
+}
+
+/* ── Toggle ──────────────────────────────────────────── */
+.toggle-track {
+  position: relative;
+  width: 56px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1.5px solid var(--sand);
+  cursor: pointer;
+  background: var(--beige);
+  transition: background 0.25s ease, border-color 0.25s ease;
+  padding: 0;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.toggle-track.on {
+  background: var(--sage);
+  border-color: var(--sage);
+}
+
+.toggle-track:focus-visible {
+  box-shadow: 0 0 0 3px rgba(107, 140, 107, 0.35);
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--warm-white);
+  box-shadow: 1px 1px 3px rgba(44, 36, 22, 0.2);
+  transition: left 0.25s ease;
+  display: block;
+}
+
+.toggle-track.on .toggle-thumb {
+  left: 29px;
+}
+
+/* ── Search Bar ──────────────────────────────────────── */
+.Searchbar {
+  background-color: var(--parchment);
+  color: var(--ink);
+  padding: 8px;
+  margin: 4px;
+  border: 1.5px solid var(--beige);
+  border-radius: 10px 8px 10px 8px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.Searchbar input,
+.Searchbar::placeholder {
+  color: var(--ink-faint);
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ── Queue List ──────────────────────────────────────── */
+.queuelistcontainer {
+  margin: 7px;
+  color: var(--ink-light);
+  padding: 10px;
+}
+
+.queuecard {
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  background-color: var(--parchment);
+  padding: 10px;
+  border: 1.5px solid var(--beige);
+  border-radius: 8px;
+  margin-bottom: 4px;
+  transition: border-color 0.15s;
+}
+
+.queuecard:hover {
+  border-color: var(--sand);
+}
+
+.token  { flex: 1 1 1%; color: var(--terra); font-weight: 500; font-family: 'Fraunces', serif; }
+.name   { flex: 1 1 1%; color: var(--ink); }
+.status { flex: 1 1 1%; color: var(--sage); font-size: 13px; }
+.counter{ flex: 1 1 1%; color: var(--ink-faint); }
+
+/* ── Control Section ─────────────────────────────────── */
+.Controlsection {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 7px;
+  gap: 14px;
+  margin: 4px;
+}
+
+.Controlbtns {
+  background-color: var(--parchment);
+  padding: 12px;
+  color: var(--ink-light);
+  border-radius: 12px 8px 12px 8px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  flex: 2 2 2%;
+  text-align: center;
+  border: 1.5px solid var(--beige);
+  cursor: pointer;
+  box-shadow: 2px 2px 0px var(--beige);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.Controlbtns:hover {
+  border-color: var(--terra);
+  color: var(--terra);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--sand);
+}
+
+.Controlbtns:active {
+  transform: translate(1px, 1px);
+  box-shadow: 0px 0px 0px var(--sand);
+}
+
+.Controlscontainer {
+  margin: 4px;
+  padding: 10px;
+}
+
+.ControlsecHeading {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--terra);
+  font-size: 17px;
+  margin: 4px;
+  letter-spacing: -0.2px;
+}

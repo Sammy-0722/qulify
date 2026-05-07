@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Coffee Shop Palette ─────────────────────────────── */
+:root {
+  --cream:      #FAF6EF;
+  --parchment:  #F0E8D8;
+  --beige:      #E5D9C3;
+  --sand:       #C9B99A;
+  --terra:      #B5622A;
+  --terra-dark: #8C4720;
+  --sage:       #6B8C6B;
+  --sage-light: #A8C4A0;
+  --sage-faint: #E6EFE6;
+  --ink:        #2C2416;
+  --ink-light:  #6B5D4A;
+  --ink-faint:  #A89880;
+  --warm-white: #FDFBF7;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Nav ─────────────────────────────────────────────── */
+nav {
+  background-color: var(--parchment);
+  padding: 5px;
+  border-bottom: 1.5px solid var(--beige);
+  color: var(--ink);
+  height: 40px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 30px;
+  top: 0px;
+}
+
+nav ul li {
+  list-style: none;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+}
+
+.navbtns {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  color: var(--ink-light);
+}
+
+/* ── Login Page Body ─────────────────────────────────── */
+.login-body {
+  background: var(--cream);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  padding: 2rem;
+  color: var(--ink);
+
+  /* subtle noise texture feel via radial gradients */
+  background-image:
+    radial-gradient(ellipse at 20% 30%, rgba(181,98,42,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(107,140,107,0.07) 0%, transparent 55%);
+}
+
+/* ── Login Card ──────────────────────────────────────── */
+.login-card {
+  background: var(--parchment);
+  border: 1.5px solid var(--sand);
+  border-radius: 20px 14px 20px 14px; /* organic, slightly uneven */
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 5px 6px 0px var(--sand);
+}
+
+/* ── Branding ────────────────────────────────────────── */
+.login-logo {
+  font-family: 'Fraunces', serif;
+  font-size: 30px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--ink);
+  letter-spacing: -1px;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.login-logo span {
+  color: var(--terra);
+}
+
+.login-sub {
+  font-size: 13px;
+  color: var(--ink-light);
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.login-badge {
+  display: inline-block;
+  background: var(--beige);
+  color: var(--ink-light);
+  font-size: 11px;
+  padding: 3px 11px;
+  border-radius: 20px;
+  border: 1px solid var(--sand);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.3px;
+}
+
+/* ── Form Elements ───────────────────────────────────── */
+.login-label {
+  font-size: 11px;
+  color: var(--ink-light);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 6px;
+  display: block;
+  font-weight: 500;
+}
+
+.login-input {
+  width: 100%;
+  background: var(--cream);
+  border: 1.5px solid var(--beige);
+  border-radius: 10px 8px 10px 8px;
+  padding: 12px 14px;
+  color: var(--ink);
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  margin-bottom: 1.2rem;
+}
+
+.login-input:focus {
+  border-color: var(--terra);
+  background: var(--warm-white);
+}
+
+.login-input::placeholder {
+  color: var(--ink-faint);
+}
+
+.login-error {
+  font-size: 12px;
+  color: var(--terra-dark);
+  margin-top: -0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+/* ── Primary Button ──────────────────────────────────── */
+.login-btn {
+  width: 100%;
+  background: var(--terra);
+  color: var(--warm-white);
+  border: 2px solid var(--terra-dark);
+  border-radius: 10px 7px 10px 7px;
+  padding: 13px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  box-shadow: 3px 3px 0px var(--terra-dark);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.login-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px var(--terra-dark);
+}
+
+.login-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px var(--terra-dark);
+}
+
+.login-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 2px 2px 0px var(--sand);
+}
+
+/* ── Divider & Footer ────────────────────────────────── */
+.login-divider {
+  border: none;
+  border-top: 1.5px solid var(--beige);
+  margin: 1.5rem 0;
+}
+
+.login-footer {
+  font-size: 12px;
+  color: var(--ink-faint);
+  text-align: center;
+  margin: 0;
+}
