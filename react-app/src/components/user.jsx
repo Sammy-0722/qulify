@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getQueue, joinQueue, getQueueStatus } from '../services/api'
+import { getQueue, joinQueue } from '../services/api'
 import "./user2.css";
 
 function User1() {
@@ -44,23 +44,20 @@ function User1() {
   }
 
   const fetchQueue = async () => {
-    try {
-      const [data, statusData] = await Promise.all([
-        getQueue(adminId),
-        getQueueStatus(adminId)
-      ]);
-      setQueue(data);
-      const serving = data.find(t => t.status === "Serving");
-      setCurrentServing(serving ? serving.tokenNo : null);
-      setIsOpen(statusData.isOpen);
+  try {
+    const data = await getQueue(adminId)
+    setQueue(data.queue || [])
+    const serving = data.queue?.find(t => t.status === "Serving")
+    setCurrentServing(serving ? serving.tokenNo : null)
+    setIsOpen(data.isOpen !== undefined ? data.isOpen : true)
 
-      if (TokenNo && serving && serving.tokenNo === TokenNo) {
-        alert(`🔔 Your turn! Token ${TokenNo} is now being served. Please go to the counter.`);
-      }
-    } catch (err) {
-      console.error('Failed to fetch queue:', err)
+    if (TokenNo && serving && serving.tokenNo === TokenNo) {
+      alert(`🔔 Your turn! Token ${TokenNo} is now being served. Please go to the counter.`)
     }
+  } catch (err) {
+    console.error('Failed to fetch queue:', err)
   }
+}
 
   useEffect(() => {
     if (adminId) {

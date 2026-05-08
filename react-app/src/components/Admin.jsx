@@ -21,21 +21,18 @@ function Admin() {
   const estimatedWait = waiting > 0 ? `${waiting * 3} min` : '--';
 
   const fetchQueue = async () => {
-    try {
-      // ✅ FIX: Pass adminId to get only this admin's queue
-      const data = await getQueue(adminId)
-      
-      // ✅ FIX: Backend now returns object with queue array
-      setQueue(data.queue || [])
-      setCurrentServing(data.currentServing)
-      setWaiting(data.waiting)
-      setServedToday(data.servedToday)
-      setIsOpen(data.isOpen)
-      setFilteredQueue(data.queue || [])
-    } catch (err) {
-      console.error('Failed to fetch queue:', err)
-    }
+  try {
+    const data = await getQueue()
+    setQueue(data.queue || [])
+    setCurrentServing(data.currentServing)
+    setWaiting(data.waiting || 0)
+    setServedToday(data.servedToday || 0)
+    setIsOpen(data.isOpen !== undefined ? data.isOpen : true)
+    setFilteredQueue(data.queue || [])
+  } catch (err) {
+    console.error('Failed to fetch queue:', err)
   }
+}
 
   useEffect(() => {
     if (!adminId) {

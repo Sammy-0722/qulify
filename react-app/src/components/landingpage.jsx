@@ -10,7 +10,7 @@ function Landingpage() {
                     <div className="logo">QULIFY</div>
                     <div className="navbtns">
                         <li className="Adminloginbtntop" onClick={()=>navigate('/Login')}>Admin Login</li>
-                        <li className="Gettokenbtntop" onClick={()=>navigate('/user')}> Get a Token</li>
+                        <li className="Gettokenbtntop" onClick={()=>navigate('/join/:adminId')}> Get a Token</li>
                     </div>
                 </ul>
             </nav>
@@ -25,7 +25,7 @@ function Landingpage() {
                         live — no more standing and guessing.</div>
                     <div className="introbtns">
                         <li className="Adminloginbtn"  onClick={()=>navigate('/Login')}> admin login</li>
-                        <li className="Gettokenbtn"    onClick={()=>navigate('/user')}> get a token</li>
+                        <li className="Gettokenbtn"    onClick={()=>navigate('/join/:adminId')}> get a token</li>
                     </div>
                     <div className="Dashboradcontainer">
                         <div className="shorthead">quifyilive queue</div>
@@ -152,7 +152,7 @@ function Landingpage() {
                         <div className="Readyhead">Ready to kill the queue?</div>
                         <div className="heading">Join as a customer or manage your counter as an admin.</div>
                         <div className="introbtns">
-                            <div className="Gettokenbtn"  onClick={()=>navigate('/user')}>GET MY TOKEN</div>
+                            <div className="Gettokenbtn"  onClick={()=>navigate('/join/:adminId')}>GET MY TOKEN</div>
                             <div className="Adminloginbtn"  onClick={()=>navigate('/admin')}>ADMIN LOGIN</div>
                         </div>
                     </div>
