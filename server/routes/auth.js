@@ -70,12 +70,12 @@ router.post('/login', async (req, res) => {
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' });
-
-    res.json({
-      success: true,
-      token,
-      email: admin.email
-    });
+res.json({
+  success: true,
+  token,
+  email: admin.email,
+  adminId: admin._id
+});
 
   } catch (err) {
     console.error(err.message);

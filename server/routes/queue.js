@@ -5,99 +5,139 @@ const Admin = require("../models/Admin");
 const authMiddleware = require("../middleware/auth");
 
 // PUBLIC — user and admin both need this
-router.get("/", async (req, res) => {
+
+
+// PUBLIC — user joins queue
+// GET queue for specific admin
+// GET queue for specific admin
+router.get("/:adminId", authMiddleware, async (req, res) => {
   try {
-    const queue = await Token.find({});
-    const admin = await Admin.findOne({});
-    const currentServing = await Token.findOne({ status: 'serving' });
+    const { adminId } = req.params;
+    const tokens = await Token.find({ adminId }).sort({ tokenNo: 1 });
+    const admin = await Admin.findById(adminId);
+    const currentServing = await Token.findOne({ adminId, status: 'Serving' });
+    
     res.status(200).json({
-      queue,
+      queue: tokens,
       currentServing: currentServing ? currentServing.tokenNo : null,
-      waiting: await Token.countDocuments({ status: "Waiting" }),
-      servedtoday: await Token.countDocuments({ status: 'served' }),
+      waiting: await Token.countDocuments({ adminId, status: "Waiting" }),
+      servedToday: await Token.countDocuments({ adminId, status: 'Served' }),
       isOpen: admin ? admin.isOpen : true
     });
   } catch (err) {
+    console.error("Fetch queue error:", err);
     res.status(500).json({ error: "Failed to fetch queue" });
   }
 });
-
-// PUBLIC — user joins queue
-router.post("/join", async (req, res) => {
+// JOIN queue - public route (no auth needed for customers)
+router.post("/join/:adminId", async (req, res) => {
   try {
-    const admin = await Admin.findOne({});
-    if (admin && !admin.isOpen) {
-      return res.status(403).json({ error: "Queue is currently closed." });
+    const { adminId } = req.params;
+    const { name, note } = req.body;
+
+    // Check if admin exists and queue is open
+    const admin = await Admin.findById(adminId);
+    if (!admin) {
+      return res.status(404).json({ error: "Admin not found" });
     }
-    const count = await Token.countDocuments();
-    const newToken = await Token.create({
-      tokenNo: count + 1,
-      name: req.body.name
+    if (!admin.isOpen) {
+      return res.status(403).json({ error: "Queue is currently closed" });
+    }
+
+    // Get the highest token number for this admin
+    const lastToken = await Token.findOne({ adminId }).sort({ tokenNo: -1 });
+    const newTokenNo = lastToken ? lastToken.tokenNo + 1 : 1;
+
+    // Create new token
+    const token = new Token({
+      tokenNo: newTokenNo,
+      name,
+      note: note || "",
+      adminId,
+      status: "Waiting"
     });
-    res.status(200).json(newToken);
+
+    await token.save();
+    res.status(201).json(token);
   } catch (err) {
+    console.error("Join queue error:", err);
     res.status(500).json({ error: "Failed to join queue" });
   }
 });
 
-// PROTECTED — all routes below require admin login
-router.post("/next", authMiddleware, async (req, res) => {
+// Next token
+router.put("/next/:adminId",  authMiddleware,async (req, res) => {
   try {
-    const serving = await Token.findOne({ status: "serving" });
-    if (serving) {
-      serving.status = "served";
-      await serving.save();
-    }
-    const waiting = await Token.findOne({ status: "Waiting" });
-    if (!waiting) return res.json({ message: "No one is waiting" });
-    waiting.status = "serving";
-    waiting.counter = "C1";
-    await waiting.save();
-    res.status(200).json(waiting);
+    const token = await Token.findOneAndUpdate(
+      { adminId: req.params.adminId, status: "Waiting" },
+      { status: "Serving" },
+      { new: true, sort: { tokenNo: 1 } }
+    );
+    if (!token) return res.status(404).json({ error: "No waiting tokens." });
+    res.status(200).json(token);
   } catch (err) {
-    res.status(500).json({ error: "Failed to call next" });
+    res.status(500).json({ error: "Failed to get next token" });
   }
 });
 
-router.post("/hold", authMiddleware, async (req, res) => {
+// Hold token
+router.put("/hold/:adminId", authMiddleware, async (req, res) => {
   try {
-    const serving = await Token.findOne({ status: 'serving' });
-    if (!serving) return res.json({ message: "No one is serving" });
-    serving.status = "hold";
-    await serving.save();
-    res.status(200).json(serving);
+    const token = await Token.findOneAndUpdate(
+      { adminId: req.params.adminId, status: "Serving" },
+      { status: "Hold" },
+      { new: true }
+    );
+    if (!token) return res.status(404).json({ error: "No token currently serving." });
+    res.status(200).json(token);
   } catch (err) {
-    res.status(500).json({ error: "Failed to hold" });
+    res.status(500).json({ error: "Failed to hold token" });
   }
 });
 
-router.post("/skip", authMiddleware, async (req, res) => {
+// Skip token
+router.put("/skip/:adminId", authMiddleware, async (req, res) => {
   try {
-    const serving = await Token.findOne({ status: "serving" });
-    if (!serving) return res.json({ message: "No one is serving" });
-    serving.status = "skipped";
-    await serving.save();
-    res.status(200).json(serving);
+    const token = await Token.findOneAndUpdate(
+      { adminId: req.params.adminId, status: "Serving" },
+      { status: "Skipped" },
+      { new: true }
+    );
+    if (!token) return res.status(404).json({ error: "No token currently serving." });
+    res.status(200).json(token);
   } catch (err) {
-    res.status(500).json({ error: "Failed to skip" });
+    res.status(500).json({ error: "Failed to skip token" });
   }
 });
 
-router.post("/reset", authMiddleware, async (req, res) => {
+// Reset queue
+router.delete("/reset/:adminId",  authMiddleware,async (req, res) => {
   try {
-    await Token.deleteMany({});
-    res.json({ message: "Queue reset" });
+    await Token.deleteMany({ adminId: req.params.adminId });
+    res.status(200).json({ message: "Queue reset successfully." });
   } catch (err) {
     res.status(500).json({ error: "Failed to reset queue" });
   }
 });
-
-router.put("/status", authMiddleware, async (req, res) => {
+router.put("/status/:adminId", authMiddleware, async (req, res) => {
   try {
     const { isOpen } = req.body;
-    const admin = await Admin.findOneAndUpdate({}, { isOpen }, { new: true });
+    const { adminId } = req.params;
+    
+    // Find and update the specific admin's queue status
+    const admin = await Admin.findByIdAndUpdate(
+      adminId,
+      { isOpen },
+      { new: true }
+    );
+    
+    if (!admin) {
+      return res.status(404).json({ error: "Admin not found" });
+    }
+    
     res.status(200).json({ isOpen: admin.isOpen });
   } catch (err) {
+    console.error("Status update error:", err);
     res.status(500).json({ error: "Failed to update status" });
   }
 });

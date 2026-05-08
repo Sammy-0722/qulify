@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landingpage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/user" element={<User1 />} />
+        <Route path="/join/:adminId" element={<User1 />} />
         <Route path="/admin" element=
         {
           <ProtectedRoute>

@@ -1,22 +1,25 @@
- const mongoose = require('mongoose');
- const tokenschema = new mongoose.Schema({
-    tokenNo:Number,
-    name:{
-        type:String,
-        required:true,
+const tokenschema = new mongoose.Schema({
+    tokenNo: Number,
+    name: {
+        type: String,
+        required: true,
     },
-    status:{
-        type:String,
-        default:"Waiting"
+    note: {
+        type: String,
+        default: ""
+    },
+    adminId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Admin",
+        required: true
+    },
+    status: {
+        type: String,
+        default: "Waiting"
     },
     createdAt: {
-  type: Date,
-  default: Date.now
-},
-    counter:String,
-
-
-    
- });
- const Token = mongoose.model("Token",tokenschema);
- module.exports = Token
+        type: Date,
+        default: Date.now
+    },
+    counter: String,
+});
