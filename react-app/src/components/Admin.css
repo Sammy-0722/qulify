@@ -1,287 +1,402 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap');
 
-/* ── Coffee Shop Palette ─────────────────────────────── */
 :root {
-  --cream:      #FAF6EF;
-  --parchment:  #F0E8D8;
-  --beige:      #E5D9C3;
-  --sand:       #C9B99A;
-  --terra:      #B5622A;
-  --terra-dark: #8C4720;
-  --terra-faint:#F5EBE0;
-  --sage:       #6B8C6B;
-  --sage-light: #A8C4A0;
-  --sage-faint: #E6EFE6;
-  --ink:        #2C2416;
-  --ink-light:  #6B5D4A;
-  --ink-faint:  #A89880;
-  --warm-white: #FDFBF7;
+  --bg:          #F7F4EF;
+  --surface:     #FFFFFF;
+  --surface-2:   #F0EDE7;
+  --border:      #E2DDD6;
+  --border-dark: #C8C0B4;
+  --ink:         #1A1612;
+  --ink-2:       #5C5248;
+  --ink-3:       #9A8F84;
+  --amber:       #C17B2F;
+  --amber-dark:  #9A6023;
+  --amber-faint: #FBF3E8;
+  --green:       #3A7D5A;
+  --green-faint: #EAF4EE;
+  --red-faint:   #FDF0EE;
+  --red:         #C0442A;
+  --nav-bg:      #1A1612;
+  --nav-text:    #F7F4EF;
 }
+
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--cream);
-  font-family: 'DM Sans', sans-serif;
+  background-color: var(--bg);
+  font-family: 'Geist', sans-serif;
   color: var(--ink);
 }
 
 /* ── Nav ─────────────────────────────────────────────── */
 nav {
-  background-color: var(--parchment);
-  padding: 5px;
-  border-bottom: 1.5px solid var(--beige);
-  color: var(--ink);
-  height: 40px;
+  background-color: var(--nav-bg);
+  padding: 0 24px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
 nav ul {
   display: flex;
   justify-content: space-between;
-  margin-right: 30px;
-  top: 0px;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-nav ul li {
-  list-style: none;
-}
+nav ul li { list-style: none; }
 
 .logo {
-  font-family: 'Fraunces', serif;
-  font-size: 22px;
-  color: var(--ink);
-  letter-spacing: -0.3px;
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--nav-text);
+  letter-spacing: 0.2px;
 }
 
 .navbtns {
   display: flex;
-  gap: 15px;
-  justify-content: center;
+  gap: 8px;
   align-items: center;
-  color: var(--ink-light);
+}
+
+.Adminloginbtn {
+  border: 1px solid rgba(247,244,239,0.2);
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: 6px;
+  color: rgba(247,244,239,0.7);
+  font-family: 'Geist', sans-serif;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.2px;
+}
+
+.Adminloginbtn:hover {
+  border-color: rgba(247,244,239,0.5);
+  color: var(--nav-text);
+  background: rgba(247,244,239,0.08);
 }
 
 .sectionline {
-  border-bottom: 1.5px solid var(--beige);
+  border: none;
+  border-bottom: 1px solid var(--border);
 }
 
-/* ── Admin Section ───────────────────────────────────── */
+/* ── Page Layout ─────────────────────────────────────── */
+.root {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+/* ── Section Labels ──────────────────────────────────── */
 .Adminheading {
-  margin-bottom: 9px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 12px;
+  margin-top: 4px;
 }
 
 .AdminSection {
-  color: var(--ink);
-  margin: 4px;
-  padding: 10px;
+  margin-bottom: 20px;
 }
 
 /* ── Overview Cards ──────────────────────────────────── */
 .Adminviewcardcontainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
 .Admincard {
-  flex: 1 1 1%;
-  background-color: var(--parchment);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 14px;
   text-align: center;
-  border-radius: 14px 10px 14px 10px;
-  padding: 10px;
-  border: 1.5px solid var(--sand);
-  box-shadow: 3px 3px 0px var(--sand);
+  transition: border-color 0.15s;
 }
 
+.Admincard:hover { border-color: var(--border-dark); }
+
 .Cardheading1 {
-  font-family: 'Fraunces', serif;
-  font-size: 28px;
-  font-weight: 600;
-  color: var(--terra);
-  line-height: 1.1;
+  font-family: 'Instrument Serif', serif;
+  font-size: 32px;
+  color: var(--amber);
+  line-height: 1;
+  margin-bottom: 4px;
 }
 
 .Cardheading {
-  font-family: 'Fraunces', serif;
-  font-size: 28px;
-  font-weight: 600;
+  font-family: 'Instrument Serif', serif;
+  font-size: 32px;
   color: var(--ink);
-  line-height: 1.1;
+  line-height: 1;
+  margin-bottom: 4px;
 }
 
 .des {
-  color: var(--ink-faint);
-  font-size: 13px;
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
 }
 
-/* ── Second Container ────────────────────────────────── */
+/* ── QR + Status Container ───────────────────────────── */
 .secondconatiner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin: 2px;
-  padding: 10px;
+  gap: 12px;
 }
 
 /* ── Queue Status Row ────────────────────────────────── */
 .Queuestatussec {
-  background-color: var(--parchment);
   display: flex;
   justify-content: space-between;
-  margin: 4px;
-  padding: 10px;
-  border-radius: 12px 8px 12px 8px;
-  border: 1.5px solid var(--beige);
   align-items: center;
-  box-shadow: 2px 2px 0px var(--beige);
 }
 
+.queueinfocontainer { display: flex; flex-direction: column; gap: 2px; }
+
 .queuestatusheading {
-  font-size: 16px;
-  color: var(--ink);
+  font-size: 14px;
   font-weight: 500;
+  color: var(--ink);
 }
 
 .queuestatusdescription {
   font-size: 12px;
-  color: var(--ink-faint);
-  margin-top: 5px;
+  color: var(--ink-3);
 }
 
 /* ── Toggle ──────────────────────────────────────────── */
 .toggle-track {
   position: relative;
-  width: 56px;
-  height: 30px;
-  border-radius: 15px;
-  border: 1.5px solid var(--sand);
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  border: none;
   cursor: pointer;
-  background: var(--beige);
-  transition: background 0.25s ease, border-color 0.25s ease;
+  background: var(--border-dark);
+  transition: background 0.2s ease;
   padding: 0;
   outline: none;
   flex-shrink: 0;
 }
 
-.toggle-track.on {
-  background: var(--sage);
-  border-color: var(--sage);
-}
+.toggle-track.on { background: var(--green); }
 
 .toggle-track:focus-visible {
-  box-shadow: 0 0 0 3px rgba(107, 140, 107, 0.35);
+  box-shadow: 0 0 0 3px rgba(58,125,90,0.3);
 }
 
 .toggle-thumb {
   position: absolute;
   top: 3px;
   left: 3px;
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  background: var(--warm-white);
-  box-shadow: 1px 1px 3px rgba(44, 36, 22, 0.2);
-  transition: left 0.25s ease;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: left 0.2s ease;
   display: block;
 }
 
-.toggle-track.on .toggle-thumb {
-  left: 29px;
-}
+.toggle-track.on .toggle-thumb { left: 23px; }
 
 /* ── Search Bar ──────────────────────────────────────── */
 .Searchbar {
-  background-color: var(--parchment);
+  background: var(--bg);
   color: var(--ink);
-  padding: 8px;
-  margin: 4px;
-  border: 1.5px solid var(--beige);
-  border-radius: 10px 8px 10px 8px;
-  font-family: 'DM Sans', sans-serif;
-}
-
-.Searchbar input,
-.Searchbar::placeholder {
-  color: var(--ink-faint);
-  font-family: 'DM Sans', sans-serif;
-}
-
-/* ── Queue List ──────────────────────────────────────── */
-.queuelistcontainer {
-  margin: 7px;
-  color: var(--ink-light);
-  padding: 10px;
-}
-
-.queuecard {
-  display: flex;
-  flex-wrap: wrap;
-  height: auto;
-  background-color: var(--parchment);
-  padding: 10px;
-  border: 1.5px solid var(--beige);
+  padding: 9px 14px;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  margin-bottom: 4px;
+  font-family: 'Geist', sans-serif;
+  font-size: 13px;
+  width: 100%;
+  outline: none;
   transition: border-color 0.15s;
 }
 
-.queuecard:hover {
-  border-color: var(--sand);
+.Searchbar:focus { border-color: var(--amber); }
+.Searchbar::placeholder { color: var(--ink-3); }
+
+/* ── Queue List ──────────────────────────────────────── */
+.queuelistcontainer {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
 }
 
-.token  { flex: 1 1 1%; color: var(--terra); font-weight: 500; font-family: 'Fraunces', serif; }
-.name   { flex: 1 1 1%; color: var(--ink); }
-.status { flex: 1 1 1%; color: var(--sage); font-size: 13px; }
-.counter{ flex: 1 1 1%; color: var(--ink-faint); }
-
-/* ── Control Section ─────────────────────────────────── */
-.Controlsection {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 7px;
-  gap: 14px;
-  margin: 4px;
+.queueheading {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 12px;
 }
 
-.Controlbtns {
-  background-color: var(--parchment);
-  padding: 12px;
-  color: var(--ink-light);
-  border-radius: 12px 8px 12px 8px;
-  font-size: 14px;
-  font-family: 'DM Sans', sans-serif;
-  flex: 2 2 2%;
-  text-align: center;
-  border: 1.5px solid var(--beige);
-  cursor: pointer;
-  box-shadow: 2px 2px 0px var(--beige);
-  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+.queuecard {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  border: 1px solid transparent;
+  transition: background 0.1s, border-color 0.1s;
+  align-items: center;
 }
 
-.Controlbtns:hover {
-  border-color: var(--terra);
-  color: var(--terra);
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0px var(--sand);
+.queuecard:first-of-type {
+  background: var(--surface-2);
+  border-color: var(--border);
 }
 
-.Controlbtns:active {
-  transform: translate(1px, 1px);
-  box-shadow: 0px 0px 0px var(--sand);
+.queuecard:not(:first-of-type):hover {
+  background: var(--bg);
+  border-color: var(--border);
 }
 
+.token  { font-size: 13px; font-weight: 600; color: var(--amber); }
+.name   { font-size: 13px; color: var(--ink); }
+.status { font-size: 12px; color: var(--ink-3); }
+.counter{ font-size: 12px; color: var(--ink-3); }
+
+/* ── Controls ────────────────────────────────────────── */
 .Controlscontainer {
-  margin: 4px;
-  padding: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
 }
 
 .ControlsecHeading {
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  color: var(--terra);
-  font-size: 17px;
-  margin: 4px;
-  letter-spacing: -0.2px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 12px;
 }
+
+.Controlsection {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.Controlbtns {
+  background: var(--surface-2);
+  padding: 12px 16px;
+  color: var(--ink-2);
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: 'Geist', sans-serif;
+  font-weight: 500;
+  text-align: center;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  letter-spacing: 0.2px;
+}
+
+.Controlbtns:hover {
+  background: var(--ink);
+  color: var(--nav-text);
+  border-color: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(26,22,18,0.15);
+}
+
+.Controlbtns:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ── Popup / Overlay ─────────────────────────────────── */
+.formoverlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(26,22,18,0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.formsheet {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 20px 60px rgba(26,22,18,0.2);
+}
+
+.formtitle {
+  font-family: 'Instrument Serif', serif;
+  color: var(--ink);
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 4px;
+}
+
+.nameinput {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--ink);
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: 'Geist', sans-serif;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.nameinput:focus { border-color: var(--amber); }
+.nameinput::placeholder { color: var(--ink-3); }
+
+.cancelbtn {
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  padding: 11px;
+  color: var(--ink-2);
+  cursor: pointer;
+  font-family: 'Geist', sans-serif;
+  font-size: 13px;
+  transition: background 0.15s;
+}
+
+.cancelbtn:hover { background: var(--surface-2); }

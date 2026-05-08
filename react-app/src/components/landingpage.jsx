@@ -17,7 +17,7 @@ function Landingpage() {
             <div className="container">
                 <div className="Introsection">
                     <span className="logoline">DIGITAL QUEUE MANAGEMENT</span>
-                    <div className="Heading1">No more Waiting</div>
+                    <div className="Heading1">No More Waiting</div>
                     <div className="Heading2">know your turn</div>
                     <div className="para">quilfy remove the phsycical lines
                         with a smart digital token system</div>
