@@ -461,12 +461,16 @@ nav ul li {
     padding: 10px 12px;
     color:#e1dad4;
   }
+  .queuecard-header:hover {
+  background: #472509 !important;
+  border-color: transparent !important;
+}
 
   .queuecard-header .token,
   .queuecard-header .name,
   .queuecard-header .status,
   .queuecard-header .counter {
-    color: var(--ink)!important;
+    color:  #e1dad4!important;
     font-size: 12px;
   }
   
