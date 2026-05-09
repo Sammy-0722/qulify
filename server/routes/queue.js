@@ -66,20 +66,27 @@ router.post("/join/:adminId", async (req, res) => {
 });
 
 // Next token
-router.put("/next/:adminId",  authMiddleware,async (req, res) => {
+router.put("/next/:adminId", authMiddleware, async (req, res) => {
   try {
+    // Mark ALL currently serving tokens as Served (not just one)
+    await Token.updateMany(
+      { adminId: req.params.adminId, status: "Serving" },
+      { status: "Served" }
+    );
+
+    // Pull next waiting token
     const token = await Token.findOneAndUpdate(
       { adminId: req.params.adminId, status: "Waiting" },
       { status: "Serving" },
       { new: true, sort: { tokenNo: 1 } }
     );
+
     if (!token) return res.status(404).json({ error: "No waiting tokens." });
     res.status(200).json(token);
   } catch (err) {
     res.status(500).json({ error: "Failed to get next token" });
   }
 });
-
 // Hold token
 router.put("/hold/:adminId", authMiddleware, async (req, res) => {
   try {
