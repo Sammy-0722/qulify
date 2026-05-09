@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import QRCode from "react-qr-code";
-import { adminLogout, getQueue, callNext, holdCurrent, skipCurrent, resetQueue, updateQueueStatus } from '../services/api'
+import { adminLogout, getQueue, callNext, holdCurrent, skipCurrent, resetQueue, updateQueueStatus, resumeCurrent } from '../services/api'
 import "./Admin.css";
 
 function Admin() {
@@ -138,6 +138,15 @@ function Admin() {
     }
     img.src = 'data:image/svg+xml;base64,' + btoa(svgData)
   }
+  const handleResume = () => confirm("Resume held token back to Waiting?", async () => {
+  try {
+    await resumeCurrent();
+    fetchQueue();
+    setPopup({ message: "✅ Token resumed", onConfirm: null })
+  } catch (err) {
+    setPopup({ message: "❌ No token on hold", onConfirm: null })
+  }
+})
 
   return (
     <>
@@ -252,6 +261,7 @@ function Admin() {
           <div className="Controlsection">
             <div className="Controlbtns" onClick={handleNext}>next</div>
             <div className="Controlbtns" onClick={handleHold}>hold</div>
+            <div className="Controlbtns" onClick={handleResume}>resume</div>
             <div className="Controlbtns" onClick={handleSkip}>skip</div>
             <div className="Controlbtns" onClick={handleReset}>reset</div>
           </div>

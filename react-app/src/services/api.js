@@ -88,5 +88,10 @@ export const updateQueueStatus = async (isOpen) => {
   const response = await api.put(`/queue/status/${adminId}`, { isOpen })
   return response.data
 }
+export const resumeCurrent = async () => {
+  const adminId = localStorage.getItem('adminId')
+  const response = await api.put(`/queue/resume/${adminId}`)
+  return response.data
+}
 
 export default api
