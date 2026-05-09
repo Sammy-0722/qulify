@@ -77,7 +77,7 @@ router.put("/next/:adminId", authMiddleware, async (req, res) => {
     // Pull next waiting token
     const token = await Token.findOneAndUpdate(
       { adminId: req.params.adminId, status: "Waiting" },
-      { status: "Serving" },
+      { status: "Serving", counter: "C-1" },
       { new: true, sort: { tokenNo: 1 } }
     );
 
@@ -146,6 +146,19 @@ router.put("/status/:adminId", authMiddleware, async (req, res) => {
   } catch (err) {
     console.error("Status update error:", err);
     res.status(500).json({ error: "Failed to update status" });
+  }
+});
+router.put("/resume/:adminId", authMiddleware, async (req, res) => {
+  try {
+    const token = await Token.findOneAndUpdate(
+      { adminId: req.params.adminId, status: "Hold" },
+      { status: "Waiting" },
+      { new: true, sort: { tokenNo: 1 } }
+    );
+    if (!token) return res.status(404).json({ error: "No token on hold." });
+    res.status(200).json(token);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to resume token" });
   }
 });
 
