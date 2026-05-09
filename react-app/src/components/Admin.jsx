@@ -154,7 +154,7 @@ function Admin() {
             </div>
           </ul>
         </nav>
-        <div className="root"></div>
+        <div className="root">
         <div className="sectionline"></div>
 
         {/* QR CODE SECTION */}
