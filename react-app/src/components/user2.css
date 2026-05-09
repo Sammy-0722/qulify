@@ -444,7 +444,22 @@ nav ul li { list-style: none; }
     font-size: 12px;
     display: block;
   }
+  .queuecard:first-of-type {
+    background: var(--nav-bg);
+    border-radius: 8px 8px 0 0;
+    padding: 10px 12px;
+  }
 
+  .queuecard:first-of-type .token {
+    color: rgb(94, 49, 14);
+  }
+
+  .queuecard:first-of-type .name,
+  .queuecard:first-of-type .status,
+  .queuecard:first-of-type .counter {
+    color: rgb(94, 49, 14);
+  }
+}
   .Taketoken {
     font-size: 13px;
     padding: 14px;
@@ -458,4 +473,3 @@ nav ul li { list-style: none; }
     font-size: 14px;
     padding: 12px;
   }
-}
