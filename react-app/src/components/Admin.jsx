@@ -234,7 +234,7 @@ function Admin() {
 
         <div className="queuelistcontainer">
           <div className="queueheading">Queue list</div>
-          <div className="queuecard queuecard-header" >
+          <div className="queuecard queuecard-header " >
             <div className="token">Token</div>
             <div className="name">Name</div>
             <div className="status">Status</div>

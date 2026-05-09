@@ -450,40 +450,27 @@ nav ul li {
 }
 
 @media (max-width: 768px) {
-  nav {
-    padding: 0 16px;
-  }
+  nav { padding: 0 16px; }
+  .logo { font-size: 16px; }
+  .Adminloginbtn { padding: 5px 10px; font-size: 11px; }
+  .root { padding: 16px 12px; }
+  .Adminviewcardcontainer { grid-template-columns: repeat(2, 1fr); }
+  .Controlsection { grid-template-columns: repeat(3, 1fr); }
+  .secondconatiner { padding: 12px; }
+  .Searchbar { font-size: 13px; }
+  .Cardheading1, .Cardheading { font-size: 24px; }
+  .Controlbtns { padding: 10px 8px; font-size: 12px; }
 
-  .logo {
-    font-size: 16px;
-  }
-
-  .Adminloginbtn {
-    padding: 5px 10px;
-    font-size: 11px;
-  }
-
-  .root {
-    padding: 16px 12px;
-  }
-
-  .Adminviewcardcontainer {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* .Controlsection {
-    grid-template-columns: repeat(2, 1fr);
-  } */
-
-  .secondconatiner {
+  .queuecard {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     padding: 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
   }
 
-  .Queuestatussec {
-    gap: 12px;
-  }
-
- .queuecard-header {
+  .queuecard-header {
     background: var(--nav-bg) !important;
     border-radius: 8px 8px 0 0;
     padding: 10px 12px;
@@ -496,37 +483,14 @@ nav ul li {
     color: rgba(247,244,239,0.6) !important;
     font-size: 12px;
   }
-}
 
-  /* Popup fix for mobile */
+  .formoverlay { align-items: center; }
+
   .formsheet {
-    max-width: 100%;
+    max-width: 92%;
     width: 92%;
     border-radius: 16px;
     padding: 20px 16px;
     margin: 0 auto;
   }
-
-  .formoverlay {
-    align-items: center;
-  }
-}
-
-.Searchbar {
-  font-size: 13px;
-}
-
-.Cardheading1,
-.Cardheading {
-  font-size: 24px;
-}
-
-.formsheet {
-  padding: 20px 16px;
-  border-radius: 16px 16px 0 0;
-}
-
-.Controlbtns {
-  padding: 10px 8px;
-  font-size: 12px;
 }
