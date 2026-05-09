@@ -426,9 +426,9 @@ nav ul li { list-style: none; }
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .Controlsection {
+  /* .Controlsection {
     grid-template-columns: repeat(2, 1fr);
-  }
+  } */
 
   .secondconatiner {
     padding: 12px;
