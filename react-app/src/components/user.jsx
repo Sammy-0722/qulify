@@ -17,10 +17,16 @@ function User1() {
   const [estimatedWait, setEstimatedWait] = useState(0);
   const [showServingPopup, setShowServingPopup] = useState(false);
   const previousStatusRef = useRef(null);
+  const tokenRef = useRef("");
 
   const myIndex = queue.findIndex(item => item.tokenNo === TokenNo);
   const peopleAhead = myIndex === -1 ? 0 : myIndex;
   const estimatedtime = peopleAhead * 3;
+
+  // Update ref whenever TokenNo changes
+  useEffect(() => {
+    tokenRef.current = TokenNo;
+  }, [TokenNo]);
 
   const handleJoinqueue = async () => {
     if (!name.trim()) {
@@ -30,12 +36,13 @@ function User1() {
     try {
       const data = await joinQueue(name, note, adminId);
       setMyToken(data.tokenNo);
+      tokenRef.current = data.tokenNo;
       setIssuedAt(new Date().toLocaleTimeString());
       const waitingCount = queue.filter(t => t.status === "Waiting").length;
       setEstimatedWait(waitingCount * 3);
       setShowForm(false);
       setShowPopup(true);
-      previousStatusRef.current = "Waiting"; // Initialize status tracking
+      previousStatusRef.current = "Waiting";
     } catch (err) {
       if (err.response?.status === 403) {
         alert("Queue is currently closed. Please try again later.");
@@ -54,17 +61,17 @@ function User1() {
       setCurrentServing(serving ? serving.tokenNo : null)
       setIsOpen(data.isOpen !== undefined ? data.isOpen : true)
 
-      // Check if MY token status changed to Serving
-      if (TokenNo) {
-        const myToken = data.queue?.find(t => t.tokenNo === TokenNo);
+      // Use ref to get current token value
+      const currentToken = tokenRef.current;
+      
+      if (currentToken) {
+        const myToken = data.queue?.find(t => t.tokenNo === currentToken);
         const currentStatus = myToken?.status;
         
-        // Only show popup if status CHANGED from non-Serving to Serving
         if (currentStatus === "Serving" && previousStatusRef.current !== "Serving") {
           setShowServingPopup(true);
         }
         
-        // Update the previous status
         previousStatusRef.current = currentStatus;
       }
     } catch (err) {
