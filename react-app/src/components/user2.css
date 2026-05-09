@@ -376,3 +376,69 @@ nav ul li { list-style: none; }
 }
 
 .cancelbtn:hover { background: var(--surface-2); }
+@media (max-width: 768px) {
+  nav {
+    padding: 0 16px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .Adminloginbtn {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .Wholecontainer {
+    padding: 16px 12px;
+  }
+
+  .Tokenno {
+    font-size: 56px;
+  }
+
+  .Tokeninfom {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .tokencard {
+    padding: 10px 6px;
+  }
+
+  .number {
+    font-size: 22px;
+  }
+
+  .tokencard > div:last-child {
+    font-size: 10px;
+  }
+
+  .wheretogosec2 {
+    padding: 12px 14px;
+  }
+
+  .queuecard {
+    grid-template-columns: 0.5fr 1.5fr 1fr;
+    font-size: 12px;
+  }
+
+  .queuecard .counter {
+    display: none;
+  }
+
+  .Taketoken {
+    font-size: 13px;
+    padding: 14px;
+  }
+
+  .formsheet {
+    padding: 20px 16px;
+  }
+
+  .nameinput {
+    font-size: 14px;
+    padding: 12px;
+  }
+}

@@ -155,8 +155,8 @@ function Landingpage() {
                         <div className="Readyhead">Ready to kill the queue?</div>
                         <div className="heading">Join as a customer or manage your counter as an admin.</div>
                         <div className="introbtns">
-                            <div className="Gettokenbtn" onClick={() => navigate('/join/:adminId')}>GET MY TOKEN</div>
-                            <div className="Adminloginbtn" onClick={() => alert("Please scan your shop's QR code to join the queue.")}>ADMIN LOGIN</div>
+                            <div className="Gettokenbtn" onClick={() =>alert("Please scan your shop's QR code to join the queue.")}>GET MY TOKEN</div>
+                            <div className="Adminloginbtn" onClick={() => navigate('/Login')} >ADMIN LOGIN</div>
                         </div>
                     </div>
                 </div>

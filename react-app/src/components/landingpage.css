@@ -333,7 +333,7 @@ nav ul {
 .howcard-number {
   font-family: 'Instrument Serif', serif;
   font-size: 56px;
-  color: rgba(26,22,18,0.05);
+  color: rgba(26,22,18);
   font-weight: 400;
   line-height: 1;
   margin-bottom: 8px;
@@ -536,8 +536,117 @@ nav ul {
   font-size: 12px;
   border-top: 1px solid rgba(247,244,239,0.08);
 }
-@media screen and (max-width: 360px) and (min-aspect-ratio: 1/1) {
+@media (max-width: 768px) {
   nav {
+    padding: 0 16px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .Adminloginbtntop,
+  .Gettokenbtntop {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .container {
+    padding: 48px 20px 40px;
+  }
+
+  .Heading1,
+  .Heading2 {
+    font-size: 48px;
+    letter-spacing: -2px;
+  }
+
+  .para {
+    font-size: 14px;
+  }
+
+  .introbtns {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .Adminloginbtn,
+  .Gettokenbtn {
     width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+  }
+
+  .Dashboradcontainer {
+    margin: 24px 0 0;
+  }
+
+  .dashboard {
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .HowItWorksContainer {
+    padding: 48px 20px;
+  }
+
+  .mainHeading {
+    font-size: 28px;
+  }
+
+  .howitworks {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .Featuresec {
+    padding: 48px 20px;
+  }
+
+  .sub-heading {
+    font-size: 28px;
+  }
+
+  .card-sec {
+    grid-template-columns: 1fr;
+  }
+
+  .Card1 {
+    flex: 1 1 100%;
+  }
+
+  .usecase-content-cont {
+    padding: 48px 20px 32px;
+  }
+
+  .Xyz {
+    padding: 0 20px 48px;
+  }
+
+  .Readysec {
+    padding: 40px 24px;
+  }
+
+  .Readyhead {
+    font-size: 26px;
+  }
+
+  .Readysec .introbtns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .Readysec .Gettokenbtn,
+  .Readysec .Adminloginbtn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .Footer {
+    padding: 0 20px;
+    gap: 0;
+    justify-content: space-between;
+    font-size: 11px;
   }
 }

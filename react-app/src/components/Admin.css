@@ -404,3 +404,65 @@ nav ul li { list-style: none; }
 }
 
 .cancelbtn:hover { background: var(--surface-2); }
+@media (max-width: 768px) {
+  nav {
+    padding: 0 16px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .Adminloginbtn {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .root {
+    padding: 16px 12px;
+  }
+
+  .Adminviewcardcontainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .Controlsection {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .secondconatiner {
+    padding: 12px;
+  }
+
+  .Queuestatussec {
+    gap: 12px;
+  }
+
+  .queuecard {
+    grid-template-columns: 0.5fr 1.5fr 1fr;
+    font-size: 12px;
+  }
+
+  .queuecard .counter {
+    display: none;
+  }
+
+  .Searchbar {
+    font-size: 13px;
+  }
+
+  .Cardheading1,
+  .Cardheading {
+    font-size: 24px;
+  }
+
+  .formsheet {
+    padding: 20px 16px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .Controlbtns {
+    padding: 10px 8px;
+    font-size: 12px;
+  }
+}
