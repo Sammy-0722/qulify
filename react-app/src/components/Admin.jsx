@@ -146,7 +146,7 @@ function Admin() {
           <ul>
             <div className="logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <img src="/logo.png" alt="Qulify" style={{ height: '28px', width: 'auto' }} />
-            Quli<span>fy</span>
+              <span>Quli<span style={{ color: 'var(--amber)' }}>fy</span></span>
             </div>
             <div className="navbtns">
               <li className="Adminloginbtn">Admin</li>
@@ -170,8 +170,8 @@ function Admin() {
           </div>
           {showQR && (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', padding: '16px', background: '#111', borderRadius: '12px' }}>
-              <QRCode id="admin-qr-code" value={joinLink} size={180} fgColor="#0b0a0a" bgColor="#e7e0e0" />
-              <div style={{ color: '#060505', fontSize: '0.75rem', wordBreak: 'break-all', textAlign: 'center' }}>{joinLink}</div>
+              <QRCode id="admin-qr-code" value={joinLink} size={180} fgColor="rgb(11, 10, 10)" bgColor="#e7e0e0" />
+              <div style={{ color: '#6a6969', fontSize: '0.75rem', wordBreak: 'break-all', textAlign: 'center' }}>{joinLink}</div>
               <div className="Controlbtns" onClick={copyLink}>Copy Link</div>
               <div className="Controlbtns" onClick={handleDownloadQR}>
                 Download QR

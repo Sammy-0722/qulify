@@ -9,7 +9,7 @@ function Landingpage() {
                 <ul>
                     <div className="logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <img src="/logo.png" alt="Qulify" style={{ height: '28px', width: 'auto' }} />
-                        Qulify
+                          <span>Quli<span style={{ color: 'var(--amber)' }}>fy</span></span>
                     </div>
                     <div className="navbtns">
                         <li className="Adminloginbtntop" onClick={() => navigate('/Login')}>Admin Login</li>

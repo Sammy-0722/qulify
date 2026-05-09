@@ -73,7 +73,7 @@ function User1() {
         <ul>
           <div className="logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <img src="/logo.png" alt="Qulify" style={{ height: '28px', width: 'auto' }} />
-              Quli<span>fy</span>
+                <span>Quli<span style={{ color: 'var(--amber)' }}>fy</span></span>
           </div>
 
         </ul>

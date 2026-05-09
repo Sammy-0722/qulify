@@ -44,7 +44,7 @@ const Login = () => {
       <div className="login-card">
         <div className="login-logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <img src="/logo.png" alt="Qulify" style={{ height: '32px', width: 'auto' }} />
-          Quli<span>fy</span>
+          <span>Quli<span style={{ color: 'var(--amber)' }}>fy</span></span>
         </div>
         <div className="login-sub">Queue Management System</div>
         <div className="login-badge">{isRegister ? 'Create Admin' : 'Admin Portal'}</div>
