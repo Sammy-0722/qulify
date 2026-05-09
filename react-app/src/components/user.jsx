@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { getQueue, joinQueue } from '../services/api';
 import "./user2.css";
@@ -15,6 +15,8 @@ function User1() {
   const [isOpen, setIsOpen] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
   const [estimatedWait, setEstimatedWait] = useState(0);
+  const [showServingPopup, setShowServingPopup] = useState(false);
+  const hasNotifiedRef = useRef(false);
 
   const myIndex = queue.findIndex(item => item.tokenNo === TokenNo);
   const peopleAhead = myIndex === -1 ? 0 : myIndex;
@@ -33,6 +35,7 @@ function User1() {
       setEstimatedWait(waitingCount * 3);
       setShowForm(false);
       setShowPopup(true);
+      hasNotifiedRef.current = false; // Reset notification flag for new token
     } catch (err) {
       if (err.response?.status === 403) {
         alert("Queue is currently closed. Please try again later.");
@@ -51,8 +54,9 @@ function User1() {
       setCurrentServing(serving ? serving.tokenNo : null)
       setIsOpen(data.isOpen !== undefined ? data.isOpen : true)
 
-      if (TokenNo && serving && serving.tokenNo === TokenNo) {
-        alert(`🔔 Your turn! Token ${TokenNo} is now being served. Please go to the counter.`)
+      if (TokenNo && serving && serving.tokenNo === TokenNo && !hasNotifiedRef.current) {
+        setShowServingPopup(true);
+        hasNotifiedRef.current = true;
       }
     } catch (err) {
       console.error('Failed to fetch queue:', err)
@@ -73,9 +77,8 @@ function User1() {
         <ul>
           <div className="logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <img src="/logo.png" alt="Qulify" style={{ height: '28px', width: 'auto' }} />
-                <span>Quli<span style={{ color: 'var(--amber)' }}>fy</span></span>
+            <span>Quli<span style={{ color: 'var(--amber)' }}>fy</span></span>
           </div>
-
         </ul>
       </nav>
       <div className="sectionline"></div>
@@ -183,6 +186,24 @@ function User1() {
                 Estimated wait: <strong>{estimatedWait} mins</strong>
               </div>
               <div className="Taketoken" onClick={() => setShowPopup(false)}>Got it!</div>
+            </div>
+          </div>
+        )}
+
+        {showServingPopup && (
+          <div className="formoverlay" onClick={() => setShowServingPopup(false)}>
+            <div className="formsheet" onClick={(e) => e.stopPropagation()}>
+              <div style={{ fontSize: '3rem' }}>🔔</div>
+              <div className="formtitle">It's Your Turn!</div>
+              <div style={{ fontSize: '3rem', fontWeight: 'bold', color: '#3e2c1f', margin: '1rem 0' }}>
+                {TokenNo}
+              </div>
+              <div style={{ color: '#0b0b0b', marginBottom: '1.5rem' }}>
+                Please proceed to the counter
+              </div>
+              <div className="Taketoken" onClick={() => setShowServingPopup(false)}>
+                On my way
+              </div>
             </div>
           </div>
         )}
