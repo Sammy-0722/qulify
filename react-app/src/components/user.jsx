@@ -46,22 +46,26 @@ function User1() {
     }
   }
 
-  const fetchQueue = async () => {
-    try {
-      const data = await getQueue(adminId)
-      setQueue(data.queue || [])
-      const serving = data.queue?.find(t => t.status === "Serving")
-      setCurrentServing(serving ? serving.tokenNo : null)
-      setIsOpen(data.isOpen !== undefined ? data.isOpen : true)
+ const fetchQueue = async () => {
+  try {
+    const data = await getQueue(adminId)
+    setQueue(data.queue || [])
+    const serving = data.queue?.find(t => t.status === "Serving")
+    setCurrentServing(serving ? serving.tokenNo : null)
+    setIsOpen(data.isOpen !== undefined ? data.isOpen : true)
 
-      if (TokenNo && serving && serving.tokenNo === TokenNo && !hasNotifiedRef.current) {
+    // Check if my token is being served
+    if (TokenNo) {
+      const myToken = data.queue?.find(t => t.tokenNo === TokenNo)
+      if (myToken && myToken.status === "Serving" && !hasNotifiedRef.current) {
         setShowServingPopup(true);
         hasNotifiedRef.current = true;
       }
-    } catch (err) {
-      console.error('Failed to fetch queue:', err)
     }
+  } catch (err) {
+    console.error('Failed to fetch queue:', err)
   }
+}
 
   useEffect(() => {
     if (adminId) {
