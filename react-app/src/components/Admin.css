@@ -294,6 +294,7 @@ nav ul li {
 .queuecard-header {
   background-color: #472509;
   border-radius: 8px 8px 0 0;
+   pointer-events: none;
 }
 
 .queuecard-header .token { color: var(--amber); }
