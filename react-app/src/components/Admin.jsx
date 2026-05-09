@@ -248,9 +248,9 @@ function Admin() {
             filteredQueue.map((person) => (
               <div className="queuecard" key={person._id}>
                 <div className="token">{person.tokenNo}</div>
-                <div className="name">{person.name}</div>
-                <div className="status">{person.status}</div>
-                <div className="counter">{person.counter || '—'}</div>
+                <div className="name2">{person.name}</div>
+                <div className="status2">{person.status}</div>
+                <div className="counter2">{person.counter || '—'}</div>
               </div>
             ))
           )}

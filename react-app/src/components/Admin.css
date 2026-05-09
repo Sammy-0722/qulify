@@ -18,6 +18,7 @@
   --red: #C0442A;
   --nav-bg: #1A1612;
   --nav-text: #F7F4EF;
+  --queueheading :#fff8dc;
 }
 
 * {
@@ -288,7 +289,7 @@ nav ul li {
   border: 1px solid transparent;
   transition: background 0.1s, border-color 0.1s;
   align-items: center;
-  background:  --ink-3;
+  background-color:  #472509;
 }
 
 .queuecard:first-of-type {
@@ -309,18 +310,33 @@ nav ul li {
 
 .name {
   font-size: 13px;
-  color: var(--ink);
+  color: #e1dad4;
 }
 
 .status {
   font-size: 12px;
-  color: var(--ink-3);
+  color: #e1dad4;
 }
 
 .counter {
   font-size: 12px;
-  color: var(--ink-3);
+  color: #e1dad4;
 }
+.name2 {
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.status2 {
+  font-size: 12px;
+  color: var(--ink);
+}
+
+.counter2 {
+  font-size: 12px;
+  color:var(--ink);
+}
+
 
 /* ── Controls ────────────────────────────────────────── */
 .Controlscontainer {
@@ -472,7 +488,7 @@ nav ul li {
   }
 
   .queuecard-header {
-    background: var(--nav-bg) !important;
+    background:#472509  !important;
     border-radius: 8px 8px 0 0;
     padding: 10px 12px;
   }
@@ -481,8 +497,20 @@ nav ul li {
   .queuecard-header .name,
   .queuecard-header .status,
   .queuecard-header .counter {
-    color: rgba(247,244,239,0.6) !important;
+    color: #e1dad4!important;
     font-size: 12px;
+  }
+  .name2{
+    font-size: 12px;
+    color:var(--ink)
+  }
+  .status2{
+    font-size: 12px;
+    color:var(--ink)
+  }
+  .counter2{
+    font-size: 12px;
+    color:var(--ink)
   }
 
   .formoverlay { align-items: center; }
