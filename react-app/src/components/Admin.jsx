@@ -169,9 +169,9 @@ function Admin() {
             </div>
           </div>
           {showQR && (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', padding: '16px', background: '#111', borderRadius: '12px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', padding: '16px', background: '#e7e0e0', borderRadius: '12px' }}>
               <QRCode id="admin-qr-code" value={joinLink} size={180} fgColor="rgb(11, 10, 10)" bgColor="#e7e0e0" />
-              <div style={{ color: '#6a6969', fontSize: '0.75rem', wordBreak: 'break-all', textAlign: 'center' }}>{joinLink}</div>
+              <div style={{ color: '#080808', fontSize: '0.75rem', wordBreak: 'break-all', textAlign: 'center' }}>{joinLink}</div>
               <div className="Controlbtns" onClick={copyLink}>Copy Link</div>
               <div className="Controlbtns" onClick={handleDownloadQR}>
                 Download QR
