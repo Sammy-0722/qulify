@@ -419,13 +419,30 @@ nav ul li { list-style: none; }
     padding: 12px 14px;
   }
 
-  .queuecard {
-    grid-template-columns: 0.5fr 1.5fr 1fr;
+   .queuecard {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .queuecard .token {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .queuecard .name {
+    font-size: 14px;
+  }
+
+  .queuecard .status {
     font-size: 12px;
   }
 
   .queuecard .counter {
-    display: none;
+    font-size: 12px;
+    display: block;
   }
 
   .Taketoken {
