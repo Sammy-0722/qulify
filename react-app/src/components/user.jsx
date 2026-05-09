@@ -16,7 +16,7 @@ function User1() {
   const [showPopup, setShowPopup] = useState(false);
   const [estimatedWait, setEstimatedWait] = useState(0);
   const [showServingPopup, setShowServingPopup] = useState(false);
-  const hasNotifiedRef = useRef(false);
+  const previousStatusRef = useRef(null);
 
   const myIndex = queue.findIndex(item => item.tokenNo === TokenNo);
   const peopleAhead = myIndex === -1 ? 0 : myIndex;
@@ -35,7 +35,7 @@ function User1() {
       setEstimatedWait(waitingCount * 3);
       setShowForm(false);
       setShowPopup(true);
-      hasNotifiedRef.current = false; // Reset notification flag for new token
+      previousStatusRef.current = "Waiting"; // Initialize status tracking
     } catch (err) {
       if (err.response?.status === 403) {
         alert("Queue is currently closed. Please try again later.");
@@ -46,26 +46,31 @@ function User1() {
     }
   }
 
- const fetchQueue = async () => {
-  try {
-    const data = await getQueue(adminId)
-    setQueue(data.queue || [])
-    const serving = data.queue?.find(t => t.status === "Serving")
-    setCurrentServing(serving ? serving.tokenNo : null)
-    setIsOpen(data.isOpen !== undefined ? data.isOpen : true)
+  const fetchQueue = async () => {
+    try {
+      const data = await getQueue(adminId)
+      setQueue(data.queue || [])
+      const serving = data.queue?.find(t => t.status === "Serving")
+      setCurrentServing(serving ? serving.tokenNo : null)
+      setIsOpen(data.isOpen !== undefined ? data.isOpen : true)
 
-    // Check if my token is being served
-    if (TokenNo) {
-      const myToken = data.queue?.find(t => t.tokenNo === TokenNo)
-      if (myToken && myToken.status === "Serving" && !hasNotifiedRef.current) {
-        setShowServingPopup(true);
-        hasNotifiedRef.current = true;
+      // Check if MY token status changed to Serving
+      if (TokenNo) {
+        const myToken = data.queue?.find(t => t.tokenNo === TokenNo);
+        const currentStatus = myToken?.status;
+        
+        // Only show popup if status CHANGED from non-Serving to Serving
+        if (currentStatus === "Serving" && previousStatusRef.current !== "Serving") {
+          setShowServingPopup(true);
+        }
+        
+        // Update the previous status
+        previousStatusRef.current = currentStatus;
       }
+    } catch (err) {
+      console.error('Failed to fetch queue:', err)
     }
-  } catch (err) {
-    console.error('Failed to fetch queue:', err)
   }
-}
 
   useEffect(() => {
     if (adminId) {
@@ -178,20 +183,6 @@ function User1() {
             </div>
           </div>
         )}
-        {isOpen ? (
-  <div className="Taketoken" onClick={() => setShowForm(true)}>
-    click here to generate token
-  </div>
-) : (
-  <div className="Taketoken" style={{ backgroundColor: '#555', cursor: 'not-allowed' }}>
-    Queue is currently closed
-  </div>
-)}
-
-{/* TEST BUTTON - Remove after testing */}
-<div className="Taketoken" onClick={() => setShowServingPopup(true)} style={{ marginTop: '10px', backgroundColor: '#10b981' }}>
-  TEST POPUP (click me)
-</div>
 
         {showPopup && (
           <div className="formoverlay" onClick={() => setShowPopup(false)}>
