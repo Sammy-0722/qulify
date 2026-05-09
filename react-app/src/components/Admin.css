@@ -288,6 +288,7 @@ nav ul li {
   border: 1px solid transparent;
   transition: background 0.1s, border-color 0.1s;
   align-items: center;
+  background:  --ink-3;
 }
 
 .queuecard:first-of-type {
