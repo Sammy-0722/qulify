@@ -320,6 +320,7 @@ nav ul li { list-style: none; }
   cursor: pointer;
   transition: all 0.15s ease;
   letter-spacing: 0.2px;
+  color: #1A1612;
 }
 
 .Controlbtns:hover {
