@@ -141,7 +141,7 @@ function Admin() {
 
   return (
     <>
-      <div className="root">
+      
         <nav>
           <ul>
             <div className="logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
