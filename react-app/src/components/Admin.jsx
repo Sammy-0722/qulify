@@ -21,18 +21,18 @@ function Admin() {
   const estimatedWait = waiting > 0 ? `${waiting * 3} min` : '--';
 
   const fetchQueue = async () => {
-  try {
-    const data = await getQueue()
-    setQueue(data.queue || [])
-    setCurrentServing(data.currentServing)
-    setWaiting(data.waiting || 0)
-    setServedToday(data.servedToday || 0)
-    setIsOpen(data.isOpen !== undefined ? data.isOpen : true)
-    setFilteredQueue(data.queue || [])
-  } catch (err) {
-    console.error('Failed to fetch queue:', err)
+    try {
+      const data = await getQueue()
+      setQueue(data.queue || [])
+      setCurrentServing(data.currentServing)
+      setWaiting(data.waiting || 0)
+      setServedToday(data.servedToday || 0)
+      setIsOpen(data.isOpen !== undefined ? data.isOpen : true)
+      setFilteredQueue(data.queue || [])
+    } catch (err) {
+      console.error('Failed to fetch queue:', err)
+    }
   }
-}
 
   useEffect(() => {
     if (!adminId) {
@@ -63,9 +63,9 @@ function Admin() {
 
   const confirm = (message, onConfirm) => setPopup({ message, onConfirm })
 
-  const handleNext = () => confirm("Call the next waiting token?", async () => { 
+  const handleNext = () => confirm("Call the next waiting token?", async () => {
     try {
-      await callNext(); 
+      await callNext();
       fetchQueue();
       setPopup({ message: "✅ Next token called!", onConfirm: null })
     } catch (err) {
@@ -73,9 +73,9 @@ function Admin() {
     }
   })
 
-  const handleHold = () => confirm("Put the current token on hold?", async () => { 
+  const handleHold = () => confirm("Put the current token on hold?", async () => {
     try {
-      await holdCurrent(); 
+      await holdCurrent();
       fetchQueue();
       setPopup({ message: "✅ Token put on hold", onConfirm: null })
     } catch (err) {
@@ -83,9 +83,9 @@ function Admin() {
     }
   })
 
-  const handleSkip = () => confirm("Skip the current token?", async () => { 
+  const handleSkip = () => confirm("Skip the current token?", async () => {
     try {
-      await skipCurrent(); 
+      await skipCurrent();
       fetchQueue();
       setPopup({ message: "✅ Token skipped", onConfirm: null })
     } catch (err) {
@@ -93,9 +93,9 @@ function Admin() {
     }
   })
 
-  const handleReset = () => confirm("Reset the entire queue? This cannot be undone.", async () => { 
+  const handleReset = () => confirm("Reset the entire queue? This cannot be undone.", async () => {
     try {
-      await resetQueue(); 
+      await resetQueue();
       fetchQueue();
       setPopup({ message: "✅ Queue reset successfully", onConfirm: null })
     } catch (err) {
@@ -118,6 +118,25 @@ function Admin() {
   const copyLink = () => {
     navigator.clipboard.writeText(joinLink)
     setPopup({ message: "✅ Link copied to clipboard!", onConfirm: null })
+  }
+  const handleDownloadQR = () => {
+    const svg = document.getElementById('admin-qr-code')
+    const svgData = new XMLSerializer().serializeToString(svg)
+    const canvas = document.createElement('canvas')
+    canvas.width = 300
+    canvas.height = 300
+    const ctx = canvas.getContext('2d')
+    const img = new Image()
+    img.onload = () => {
+      ctx.fillStyle = '#F7F4EF'
+      ctx.fillRect(0, 0, 300, 300)
+      ctx.drawImage(img, 0, 0, 300, 300)
+      const link = document.createElement('a')
+      link.download = 'qulify-qr.png'
+      link.href = canvas.toDataURL('image/png')
+      link.click()
+    }
+    img.src = 'data:image/svg+xml;base64,' + btoa(svgData)
   }
 
   return (
@@ -147,9 +166,12 @@ function Admin() {
           </div>
           {showQR && (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', padding: '16px', background: '#111', borderRadius: '12px' }}>
-              <QRCode value={joinLink} size={180} fgColor="#00ff99" bgColor="#111" />
+              <QRCode id="admin-qr-code" value={joinLink} size={180} fgColor="#00ff99" bgColor="#111" />
               <div style={{ color: '#aaa', fontSize: '0.75rem', wordBreak: 'break-all', textAlign: 'center' }}>{joinLink}</div>
               <div className="Controlbtns" onClick={copyLink}>Copy Link</div>
+              <div className="Controlbtns" onClick={handleDownloadQR}>
+                Download QR
+              </div>
             </div>
           )}
         </div>
