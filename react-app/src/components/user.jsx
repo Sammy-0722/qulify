@@ -178,6 +178,20 @@ function User1() {
             </div>
           </div>
         )}
+        {isOpen ? (
+  <div className="Taketoken" onClick={() => setShowForm(true)}>
+    click here to generate token
+  </div>
+) : (
+  <div className="Taketoken" style={{ backgroundColor: '#555', cursor: 'not-allowed' }}>
+    Queue is currently closed
+  </div>
+)}
+
+{/* TEST BUTTON - Remove after testing */}
+<div className="Taketoken" onClick={() => setShowServingPopup(true)} style={{ marginTop: '10px', backgroundColor: '#10b981' }}>
+  TEST POPUP (click me)
+</div>
 
         {showPopup && (
           <div className="formoverlay" onClick={() => setShowPopup(false)}>
