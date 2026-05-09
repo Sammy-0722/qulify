@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getQueue, joinQueue } from '../services/api'
+import { getQueue, joinQueue } from '../services/api';
 import "./user2.css";
 
 function User1() {
@@ -44,20 +44,20 @@ function User1() {
   }
 
   const fetchQueue = async () => {
-  try {
-    const data = await getQueue(adminId)
-    setQueue(data.queue || [])
-    const serving = data.queue?.find(t => t.status === "Serving")
-    setCurrentServing(serving ? serving.tokenNo : null)
-    setIsOpen(data.isOpen !== undefined ? data.isOpen : true)
+    try {
+      const data = await getQueue(adminId)
+      setQueue(data.queue || [])
+      const serving = data.queue?.find(t => t.status === "Serving")
+      setCurrentServing(serving ? serving.tokenNo : null)
+      setIsOpen(data.isOpen !== undefined ? data.isOpen : true)
 
-    if (TokenNo && serving && serving.tokenNo === TokenNo) {
-      alert(`🔔 Your turn! Token ${TokenNo} is now being served. Please go to the counter.`)
+      if (TokenNo && serving && serving.tokenNo === TokenNo) {
+        alert(`🔔 Your turn! Token ${TokenNo} is now being served. Please go to the counter.`)
+      }
+    } catch (err) {
+      console.error('Failed to fetch queue:', err)
     }
-  } catch (err) {
-    console.error('Failed to fetch queue:', err)
   }
-}
 
   useEffect(() => {
     if (adminId) {
@@ -71,10 +71,11 @@ function User1() {
     <>
       <nav>
         <ul>
-          <div className="logo">QULIFY</div>
-          <div className="navbtns">
-            <li className="Adminloginbtn">Customer</li>
+          <div className="logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <img src="/logo.png" alt="Qulify" style={{ height: '28px', width: 'auto' }} />
+              Quli<span>fy</span>
           </div>
+
         </ul>
       </nav>
       <div className="sectionline"></div>
@@ -176,9 +177,9 @@ function User1() {
             <div className="formsheet" onClick={(e) => e.stopPropagation()}>
               <div style={{ fontSize: '3rem' }}>🎟️</div>
               <div className="formtitle">Token Generated!</div>
-              <div style={{ fontSize: '3rem', fontWeight: 'bold', color: '#00ff99' }}>{TokenNo}</div>
-              <div style={{ color: '#aaa', marginBottom: '8px' }}>Issued at {issuedat}</div>
-              <div style={{ color: '#ccc', marginBottom: '16px' }}>
+              <div style={{ fontSize: '3rem', fontWeight: 'bold', color: '#3e2c1f' }}>{TokenNo}</div>
+              <div style={{ color: '#0b0b0b', marginBottom: '8px' }}>Issued at {issuedat}</div>
+              <div style={{ color: '#0b0b0b', marginBottom: '16px' }}>
                 Estimated wait: <strong>{estimatedWait} mins</strong>
               </div>
               <div className="Taketoken" onClick={() => setShowPopup(false)}>Got it!</div>

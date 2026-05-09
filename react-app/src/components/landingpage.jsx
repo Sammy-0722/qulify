@@ -1,4 +1,4 @@
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "./landingpage.css";
 import "../App.css"
 function Landingpage() {
@@ -7,9 +7,12 @@ function Landingpage() {
         <div>
             <nav>
                 <ul>
-                    <div className="logo">QULIFY</div>
+                    <div className="logo" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <img src="/logo.png" alt="Qulify" style={{ height: '28px', width: 'auto' }} />
+                        Qulify
+                    </div>
                     <div className="navbtns">
-                        <li className="Adminloginbtntop" onClick={()=>navigate('/Login')}>Admin Login</li>
+                        <li className="Adminloginbtntop" onClick={() => navigate('/Login')}>Admin Login</li>
                         <li className="Gettokenbtntop" onClick={() => alert("Please scan your shop's QR code to join the queue.")}> Get a Token</li>
                     </div>
                 </ul>
@@ -24,8 +27,8 @@ function Landingpage() {
                     <div className="para">Walk in, grab a token, track your position
                         live — no more standing and guessing.</div>
                     <div className="introbtns">
-                        <li className="Adminloginbtn"  onClick={()=>navigate('/Login')}> admin login</li>
-                        <li className="Gettokenbtn"   onClick={() => alert("Please scan your shop's QR code to join the queue.")}> get a token</li>
+                        <li className="Adminloginbtn" onClick={() => navigate('/Login')}> admin login</li>
+                        <li className="Gettokenbtn" onClick={() => alert("Please scan your shop's QR code to join the queue.")}> get a token</li>
                     </div>
                     <div className="Dashboradcontainer">
                         <div className="shorthead">quifyilive queue</div>
@@ -152,12 +155,12 @@ function Landingpage() {
                         <div className="Readyhead">Ready to kill the queue?</div>
                         <div className="heading">Join as a customer or manage your counter as an admin.</div>
                         <div className="introbtns">
-                            <div className="Gettokenbtn"  onClick={()=>navigate('/join/:adminId')}>GET MY TOKEN</div>
+                            <div className="Gettokenbtn" onClick={() => navigate('/join/:adminId')}>GET MY TOKEN</div>
                             <div className="Adminloginbtn" onClick={() => alert("Please scan your shop's QR code to join the queue.")}>ADMIN LOGIN</div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <footer className="Footer">
                 <div>Oulify</div>
