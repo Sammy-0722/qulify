@@ -374,6 +374,8 @@ nav ul li {
   transition: all 0.15s ease;
   letter-spacing: 0.2px;
   border: none;
+  background-color:  var(--ink);
+  color:--border-dark;
 }
 
 .Controlbtns:hover {
