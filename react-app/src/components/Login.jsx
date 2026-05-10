@@ -70,12 +70,14 @@ const Login = () => {
 
           {error && <p className="login-error">{error}</p>}
           {success && <p className="login-success">{success}</p>}
-
-          <button className="login-btn" type="submit" disabled={loading}>
+          <div className='backbtncon'>
+            <button className="login-btn" type="submit" disabled={loading}>
             {loading ? 'Please wait...' : isRegister ? 'Register →' : 'Sign In →'}
           </button>
+          <button className='backbtn' onClick={navigate("/")} >← Back</button>
+          </div>
+         
         </form>
-          <button className='backbtn' onClick={navigate("/")} >Back</button>
 
         <hr className="login-divider" />
 
