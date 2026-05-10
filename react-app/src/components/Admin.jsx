@@ -263,7 +263,7 @@ function Admin() {
             <div className="Controlbtns" onClick={handleHold}>hold</div>
             <div className="Controlbtns" onClick={handleResume}>resume</div>
             <div className="Controlbtns" onClick={handleSkip}>skip</div>
-            <div className="Controlbtnsn resetbt" onClick={handleReset}>reset</div>
+            <div className=" resetbt" onClick={handleReset}>reset</div>
           </div>
         </div>
       </div>
