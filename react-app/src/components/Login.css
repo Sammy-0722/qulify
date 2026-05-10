@@ -137,17 +137,19 @@ nav ul {
 .login-input::placeholder { color: var(--ink-3); }
 
 .login-error {
-  font-size: 12px;
+  font-size: 16px;
   color: #C0442A;
   margin-top: -12px;
   margin-bottom: 14px;
+  font-weight: 400;
 }
 
 .login-success {
-  font-size: 12px;
+  font-size: 16px;
   color: #3A7D5A;
   margin-top: -12px;
   margin-bottom: 14px;
+    font-weight: 400;
 }
 
 /* ── Button ──────────────────────────────────────────── */
