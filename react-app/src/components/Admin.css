@@ -139,7 +139,7 @@ nav ul li {
   font-weight: 600;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: var(--ink-3);
+     color: var(--ink);
   margin-bottom: 12px;
   margin-top: 4px;
 }
@@ -374,8 +374,8 @@ nav ul li {
   transition: all 0.15s ease;
   letter-spacing: 0.2px;
   border: none;
-  background-color:  var(--ink);
-  color:--border-dark;
+  background-color: var(--nav-bg);
+    color: var(--border);
 }
 
 .Controlbtns:hover {
