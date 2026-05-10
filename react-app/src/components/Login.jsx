@@ -72,11 +72,15 @@ const Login = () => {
           {success && <p className="login-success">{success}</p>}
           <div className='backbtncon'>
             <button className="login-btn" type="submit" disabled={loading}>
-            {loading ? 'Please wait...' : isRegister ? 'Register →' : 'Sign In →'}
-          </button>
-          <button className='backbtn' onClick={navigate("/")} >← Back</button>
+              {loading ? 'Please wait...' : isRegister ? 'Register →' : 'Sign In →'}
+            </button>
+            <button
+              type="button"
+              className='backbtn'
+              onClick={() => navigate("/")}
+            > ← Back</button>
           </div>
-         
+
         </form>
 
         <hr className="login-divider" />

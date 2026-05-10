@@ -1,36 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap');
 
 :root {
-  --bg:          #F7F4EF;
-  --surface:     #FFFFFF;
-  --surface-2:   #F0EDE7;
-  --border:      #E2DDD6;
+  --bg: #E8E3DA;
+  --surface: #FFFDF9;
+  --surface-2: #F0EDE7;
+  --border: #E2DDD6;
   --border-dark: #C8C0B4;
-  --ink:         #1A1612;
-  --ink-2:       #5C5248;
-  --ink-3:       #9A8F84;
-  --amber:       #C17B2F;
-  --amber-dark:  #9A6023;
+  --ink: #1A1612;
+  --ink-2: #5C5248;
+  --ink-3: #9A8F84;
+  --amber: #C17B2F;
+  --amber-dark: #9A6023;
   --amber-faint: #FBF3E8;
-  --green:       #3A7D5A;
+  --green: #3A7D5A;
   --green-faint: #EAF4EE;
-  --nav-bg:      #1A1612;
-  --nav-text:    #F7F4EF;
+  --red-faint: #FDF0EE;
+  --red: #C0442A;
+  --nav-bg: #1A1612;
+  --nav-text: #F7F4EF;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
+  margin: 0;
+  padding: 0;
   background-color: var(--bg);
-  color: var(--ink);
   font-family: 'Geist', sans-serif;
+  color: var(--ink);
+  position: relative;
+}
+
+/* ── Grain Texture Overlay ───────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
 }
 
 /* ── Nav ─────────────────────────────────────────────── */
 nav {
   background-color: var(--nav-bg);
-  padding: 0 32px;
-  height: 56px;
+  padding: 0 24px;
+  height: 52px;
   display: flex;
   align-items: center;
   position: sticky;
@@ -48,7 +69,7 @@ nav ul {
 
 .logo {
   font-family: 'Instrument Serif', serif;
-  font-size: 22px;
+  font-size: 20px;
   font-style: italic;
   color: var(--nav-text);
   letter-spacing: 0.2px;
@@ -56,16 +77,16 @@ nav ul {
 
 .navbtns {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
 }
 
 .Adminloginbtntop {
-  border: 1px solid rgba(247,244,239,0.25);
-  padding: 7px 16px;
+  border: 1px solid rgba(247, 244, 239, 0.2);
+  padding: 6px 14px;
   font-size: 12px;
   border-radius: 6px;
-  color: rgba(247,244,239,0.7);
+  color: rgba(247, 244, 239, 0.7);
   font-family: 'Geist', sans-serif;
   background: transparent;
   cursor: pointer;
@@ -75,18 +96,18 @@ nav ul {
 }
 
 .Adminloginbtntop:hover {
-  border-color: rgba(247,244,239,0.5);
+  border-color: rgba(247, 244, 239, 0.5);
   color: var(--nav-text);
-  background: rgba(247,244,239,0.08);
+  background: rgba(247, 244, 239, 0.08);
 }
 
 .Gettokenbtntop {
-  padding: 7px 16px;
+  padding: 6px 14px;
   font-size: 12px;
   border-radius: 6px;
   background: var(--amber);
   color: #fff;
-  border: none;
+  border: 1px solid var(--amber);
   font-family: 'Geist', sans-serif;
   font-weight: 500;
   cursor: pointer;
@@ -105,9 +126,11 @@ nav ul {
   padding: 80px 32px 60px;
   text-align: center;
   background-image:
-    radial-gradient(ellipse at 20% 50%, rgba(193,123,47,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 30%, rgba(58,125,90,0.06) 0%, transparent 55%);
+    radial-gradient(ellipse at 20% 50%, rgba(193, 123, 47, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, rgba(58, 125, 90, 0.06) 0%, transparent 55%);
   border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
 }
 
 .Introsection {
@@ -167,7 +190,9 @@ nav ul {
   flex-wrap: wrap;
 }
 
-.introbtns li { list-style: none; }
+.introbtns li {
+  list-style: none;
+}
 
 .Adminloginbtn {
   border: 1px solid var(--border-dark);
@@ -205,7 +230,7 @@ nav ul {
 .Gettokenbtn:hover {
   background: #2C2820;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(26,22,18,0.15);
+  box-shadow: 0 4px 12px rgba(26, 22, 18, 0.15);
 }
 
 /* ── Dashboard Preview ───────────────────────────────── */
@@ -216,13 +241,13 @@ nav ul {
   margin: 40px auto 0;
   max-width: 560px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(26,22,18,0.08);
+  box-shadow: 0 8px 32px rgba(26, 22, 18, 0.09);
 }
 
 .shorthead {
   background: var(--nav-bg);
   padding: 10px 16px;
-  color: rgba(247,244,239,0.6);
+  color: rgba(247, 244, 239, 0.6);
   font-size: 11px;
   letter-spacing: 0.5px;
   display: flex;
@@ -232,7 +257,8 @@ nav ul {
 
 .shorthead::before {
   content: '';
-  width: 6px; height: 6px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--amber);
   display: inline-block;
@@ -277,17 +303,26 @@ nav ul {
   background: var(--amber-faint);
 }
 
-.card.active h1 { color: var(--amber); }
+.card.active h1 {
+  color: var(--amber);
+}
 
 /* ── Section Breaks ──────────────────────────────────── */
-.Linebreak { border-bottom: 1px solid var(--border); }
-.sectionline { border-bottom: 1px solid var(--border); }
+.Linebreak {
+  border-bottom: 1px solid var(--border);
+}
+
+.sectionline {
+  border-bottom: 1px solid var(--border);
+}
 
 /* ── How It Works ────────────────────────────────────── */
 .HowItWorksContainer {
   padding: 80px 32px;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
 }
 
 .shorthead2 {
@@ -319,7 +354,7 @@ nav ul {
   background: var(--bg);
   border: 1px solid var(--border);
   padding: 28px 24px;
-  border-radius: 14px;
+  border-radius: 12px;
   position: relative;
   transition: all 0.2s ease;
 }
@@ -327,13 +362,13 @@ nav ul {
 .howcard:hover {
   border-color: var(--amber);
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(26,22,18,0.08);
+  box-shadow: 0 8px 24px rgba(26, 22, 18, 0.09);
 }
 
 .howcard-number {
   font-family: 'Instrument Serif', serif;
   font-size: 56px;
-  color: rgba(26,22,18);
+  color: var(--ink);
   font-weight: 400;
   line-height: 1;
   margin-bottom: 8px;
@@ -341,7 +376,8 @@ nav ul {
 
 .icon {
   background: var(--amber-faint);
-  width: 40px; height: 40px;
+  width: 40px;
+  height: 40px;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -369,6 +405,8 @@ nav ul {
   padding: 80px 32px;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
 }
 
 .heading {
@@ -404,15 +442,17 @@ nav ul {
   border: 1px solid var(--border);
   align-items: flex-start;
   transition: all 0.15s;
+  box-shadow: 0 2px 14px rgba(26, 22, 18, 0.09);
 }
 
 .Card1:hover {
   border-color: var(--border-dark);
-  box-shadow: 0 4px 16px rgba(26,22,18,0.06);
+  box-shadow: 0 4px 16px rgba(26, 22, 18, 0.12);
 }
 
 .dot {
-  width: 7px; height: 7px;
+  width: 7px;
+  height: 7px;
   background: var(--green);
   border-radius: 50%;
   margin-top: 6px;
@@ -420,7 +460,11 @@ nav ul {
   box-shadow: 0 0 0 3px var(--green-faint);
 }
 
-.card-content { display: flex; flex-direction: column; gap: 4px; }
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 
 .cardheading {
   font-size: 14px;
@@ -439,6 +483,8 @@ nav ul {
 .UseCaseContainer {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
 }
 
 .usecase-content-cont {
@@ -470,7 +516,12 @@ nav ul {
 }
 
 /* ── CTA Section ─────────────────────────────────────── */
-.Xyz { padding: 0 32px 80px; background: var(--surface); }
+.Xyz {
+  padding: 0 32px 80px;
+  background: var(--surface);
+  position: relative;
+  z-index: 1;
+}
 
 .Readysec {
   background: var(--nav-bg);
@@ -482,6 +533,7 @@ nav ul {
   padding: 60px 40px;
   border-radius: 20px;
   gap: 16px;
+  box-shadow: 0 8px 32px rgba(26, 22, 18, 0.15);
 }
 
 .Readyhead {
@@ -495,14 +547,16 @@ nav ul {
 .Readysec .heading {
   font-size: 14px;
   font-weight: 300;
-  color: rgba(247,244,239,0.55);
+  color: rgba(247, 244, 239, 0.55);
   letter-spacing: 0;
   text-transform: none;
   font-family: 'Geist', sans-serif;
   max-width: 440px;
 }
 
-.Readysec .introbtns { padding: 0; }
+.Readysec .introbtns {
+  padding: 0;
+}
 
 .Readysec .Gettokenbtn {
   background: var(--amber);
@@ -510,18 +564,21 @@ nav ul {
   color: #fff;
 }
 
-.Readysec .Gettokenbtn:hover { background: var(--amber-dark); border-color: var(--amber-dark); }
+.Readysec .Gettokenbtn:hover {
+  background: var(--amber-dark);
+  border-color: var(--amber-dark);
+}
 
 .Readysec .Adminloginbtn {
-  border-color: rgba(247,244,239,0.25);
-  color: rgba(247,244,239,0.7);
+  border-color: rgba(247, 244, 239, 0.25);
+  color: rgba(247, 244, 239, 0.7);
   background: transparent;
 }
 
 .Readysec .Adminloginbtn:hover {
-  border-color: rgba(247,244,239,0.5);
+  border-color: rgba(247, 244, 239, 0.5);
   color: var(--nav-text);
-  background: rgba(247,244,239,0.08);
+  background: rgba(247, 244, 239, 0.08);
 }
 
 /* ── Footer ──────────────────────────────────────────── */
@@ -531,23 +588,25 @@ nav ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 32px;
-  color: rgba(247,244,239,0.35);
+  padding: 0 24px;
+  color: rgba(247, 244, 239, 0.35);
   font-size: 12px;
-  border-top: 1px solid rgba(247,244,239,0.08);
+  border-top: 1px solid rgba(247, 244, 239, 0.08);
 }
+
+/* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 768px) {
   nav {
     padding: 0 16px;
   }
 
   .logo {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .Adminloginbtntop,
   .Gettokenbtntop {
-    padding: 6px 10px;
+    padding: 5px 10px;
     font-size: 11px;
   }
 
@@ -644,7 +703,7 @@ nav ul {
   }
 
   .Footer {
-    padding: 0 20px;
+    padding: 0 16px;
     gap: 0;
     justify-content: space-between;
     font-size: 11px;

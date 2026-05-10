@@ -1,24 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap');
 
 :root {
-  --bg:          #F7F4EF;
-  --surface:     #FFFFFF;
-  --surface-2:   #F0EDE7;
-  --border:      #E2DDD6;
+  --bg: #E8E3DA;
+  --surface: #FFFDF9;
+  --surface-2: #F0EDE7;
+  --border: #E2DDD6;
   --border-dark: #C8C0B4;
-  --ink:         #1A1612;
-  --ink-2:       #5C5248;
-  --ink-3:       #9A8F84;
-  --amber:       #C17B2F;
-  --amber-dark:  #9A6023;
+  --ink: #1A1612;
+  --ink-2: #5C5248;
+  --ink-3: #9A8F84;
+  --amber: #C17B2F;
+  --amber-dark: #9A6023;
   --amber-faint: #FBF3E8;
-  --green:       #3A7D5A;
+  --green: #3A7D5A;
   --green-faint: #EAF4EE;
-  --nav-bg:      #1A1612;
-  --nav-text:    #F7F4EF;
+  --red-faint: #FDF0EE;
+  --red: #C0442A;
+  --nav-bg: #1A1612;
+  --nav-text: #F7F4EF;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -26,6 +30,19 @@ body {
   background-color: var(--bg);
   font-family: 'Geist', sans-serif;
   color: var(--ink);
+  position: relative;
+}
+
+/* ── Grain Texture Overlay ───────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
 }
 
 /* ── Nav ─────────────────────────────────────────────── */
@@ -49,14 +66,18 @@ nav ul {
   padding: 0;
 }
 
-nav ul li { list-style: none; }
+nav ul li {
+  list-style: none;
+}
 
 .logo {
   font-family: 'Instrument Serif', serif;
   font-size: 20px;
   font-style: italic;
   color: var(--nav-text);
+  letter-spacing: 0.2px;
 }
+
 .navbtns {
   display: flex;
   gap: 8px;
@@ -64,20 +85,22 @@ nav ul li { list-style: none; }
 }
 
 .Adminloginbtn {
-  border: 1px solid rgba(247,244,239,0.2);
+  border: 1px solid rgba(247, 244, 239, 0.2);
   padding: 6px 14px;
   font-size: 12px;
   border-radius: 6px;
-  color: rgba(247,244,239,0.7);
+  color: rgba(247, 244, 239, 0.7);
   font-family: 'Geist', sans-serif;
   background: transparent;
   cursor: pointer;
   transition: all 0.15s;
+  letter-spacing: 0.2px;
 }
 
 .Adminloginbtn:hover {
-  border-color: rgba(247,244,239,0.5);
+  border-color: rgba(247, 244, 239, 0.5);
   color: var(--nav-text);
+  background: rgba(247, 244, 239, 0.08);
 }
 
 .sectionline {
@@ -91,6 +114,8 @@ nav ul li { list-style: none; }
   max-width: 680px;
   margin: 0 auto;
   padding: 24px 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .Tokendatacont {
@@ -112,6 +137,7 @@ nav ul li { list-style: none; }
   gap: 4px;
   padding: 28px 20px;
   text-align: center;
+  box-shadow: 0 2px 14px rgba(26, 22, 18, 0.09);
 }
 
 .Tokendisplaycont > div:first-child {
@@ -153,6 +179,12 @@ nav ul li { list-style: none; }
   padding: 14px 10px;
   gap: 4px;
   text-align: center;
+  box-shadow: 0 2px 14px rgba(26, 22, 18, 0.09);
+  transition: border-color 0.15s;
+}
+
+.tokencard:hover {
+  border-color: var(--border-dark);
 }
 
 .tokencard > div:last-child {
@@ -178,6 +210,7 @@ nav ul li { list-style: none; }
   justify-content: space-between;
   align-items: center;
   padding: 14px 16px;
+  box-shadow: 0 2px 14px rgba(26, 22, 18, 0.06);
 }
 
 .basicinfo {
@@ -210,6 +243,7 @@ nav ul li { list-style: none; }
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 10px;
+  box-shadow: 0 2px 14px rgba(26, 22, 18, 0.09);
 }
 
 .dot {
@@ -223,8 +257,12 @@ nav ul li { list-style: none; }
 }
 
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 3px var(--green-faint); }
-  50% { box-shadow: 0 0 0 5px var(--green-faint); }
+  0%, 100% {
+    box-shadow: 0 0 0 3px var(--green-faint);
+  }
+  50% {
+    box-shadow: 0 0 0 5px var(--green-faint);
+  }
 }
 
 .servinginfotext {
@@ -251,6 +289,7 @@ nav ul li { list-style: none; }
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 2px 14px rgba(26, 22, 18, 0.09);
 }
 
 .cardheading {
@@ -273,13 +312,34 @@ nav ul li { list-style: none; }
   transition: background 0.1s;
 }
 
-.queuecard:last-child { border-bottom: none; }
-.queuecard:hover { background: var(--bg); }
+.queuecard:last-child {
+  border-bottom: none;
+}
 
-.token  { font-size: 13px; font-weight: 600; color: var(--amber); }
-.name   { font-size: 13px; color: var(--ink); }
-.status { font-size: 12px; color: var(--ink-3); }
-.counter{ font-size: 12px; color: var(--ink-3); }
+.queuecard:hover {
+  background: var(--bg);
+}
+
+.token {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--amber);
+}
+
+.name {
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.status {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.counter {
+  font-size: 12px;
+  color: var(--ink-3);
+}
 
 /* ── Take Token Button ───────────────────────────────── */
 .Taketoken {
@@ -298,26 +358,28 @@ nav ul li { list-style: none; }
   letter-spacing: 0.3px;
   cursor: pointer;
   transition: all 0.15s ease;
-  box-shadow: 0 2px 8px rgba(26,22,18,0.15);
+  box-shadow: 0 2px 8px rgba(26, 22, 18, 0.15);
 }
 
 .Taketoken:hover {
   background: #2C2820;
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(26,22,18,0.2);
+  box-shadow: 0 6px 16px rgba(26, 22, 18, 0.2);
 }
 
 .Taketoken:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(26,22,18,0.15);
+  box-shadow: 0 2px 8px rgba(26, 22, 18, 0.15);
 }
 
 /* ── Form Overlay ────────────────────────────────────── */
 .formoverlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(26,22,18,0.6);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 22, 18, 0.6);
   backdrop-filter: blur(4px);
   display: flex;
   justify-content: center;
@@ -335,7 +397,7 @@ nav ul li { list-style: none; }
   display: flex;
   flex-direction: column;
   gap: 12px;
-  box-shadow: 0 -8px 40px rgba(26,22,18,0.15);
+  box-shadow: 0 20px 60px rgba(26, 22, 18, 0.2);
 }
 
 .formtitle {
@@ -343,6 +405,7 @@ nav ul li { list-style: none; }
   color: var(--ink);
   font-size: 20px;
   font-style: italic;
+  margin-bottom: 4px;
 }
 
 .nameinput {
@@ -358,8 +421,13 @@ nav ul li { list-style: none; }
   transition: border-color 0.15s;
 }
 
-.nameinput:focus { border-color: var(--amber); }
-.nameinput::placeholder { color: var(--ink-3); }
+.nameinput:focus {
+  border-color: var(--amber);
+}
+
+.nameinput::placeholder {
+  color: var(--ink-3);
+}
 
 .cancelbtn {
   border-radius: 8px;
@@ -375,7 +443,11 @@ nav ul li { list-style: none; }
   transition: background 0.15s;
 }
 
-.cancelbtn:hover { background: var(--surface-2); }
+.cancelbtn:hover {
+  background: var(--surface-2);
+}
+
+/* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 768px) {
   nav {
     padding: 0 16px;
@@ -419,7 +491,7 @@ nav ul li { list-style: none; }
     padding: 12px 14px;
   }
 
-     .queuecard {
+  .queuecard {
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -438,7 +510,7 @@ nav ul li { list-style: none; }
   .queuecard:first-child .name,
   .queuecard:first-child .status,
   .queuecard:first-child .counter {
-    color: rgba(247,244,239,0.6) !important;
+    color: rgba(247, 244, 239, 0.6) !important;
     font-size: 12px;
   }
 
@@ -447,9 +519,14 @@ nav ul li { list-style: none; }
     font-size: 12px;
   }
 
+  .Taketoken {
+    font-size: 13px;
+    padding: 14px;
+  }
+
   /* Popup fix for mobile */
   .formsheet {
-    max-width: 100%;
+    max-width: 92%;
     width: 92%;
     border-radius: 16px;
     padding: 20px 16px;
@@ -459,17 +536,9 @@ nav ul li { list-style: none; }
   .formoverlay {
     align-items: center;
   }
-}
-  .Taketoken {
-    font-size: 13px;
-    padding: 14px;
-  }
-
-  .formsheet {
-    padding: 20px 16px;
-  }
 
   .nameinput {
     font-size: 14px;
     padding: 12px;
   }
+}
