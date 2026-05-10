@@ -74,6 +74,7 @@ const Login = () => {
           <button className="login-btn" type="submit" disabled={loading}>
             {loading ? 'Please wait...' : isRegister ? 'Register →' : 'Sign In →'}
           </button>
+          <button className='login-btn' onClick={navigate("/")}></button>
         </form>
 
         <hr className="login-divider" />

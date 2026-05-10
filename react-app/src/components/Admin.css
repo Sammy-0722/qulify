@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap');
 
 :root {
-  --bg: #F7F4EF;
-  --surface: #FFFFFF;
+  --bg: #E8E3DA;
+  --surface: #FFFDF9;
   --surface-2: #F0EDE7;
   --border: #E2DDD6;
   --border-dark: #C8C0B4;
@@ -18,7 +18,7 @@
   --red: #C0442A;
   --nav-bg: #1A1612;
   --nav-text: #F7F4EF;
-  --queueheading :#fff8dc;
+  --queueheading: #fff8dc;
 }
 
 * {
@@ -31,6 +31,19 @@ body {
   background-color: var(--bg);
   font-family: 'Geist', sans-serif;
   color: var(--ink);
+  position: relative;
+}
+
+/* ── Grain Texture Overlay ───────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
 }
 
 /* ── Nav ─────────────────────────────────────────────── */
@@ -43,7 +56,6 @@ nav {
   position: sticky;
   top: 0;
   z-index: 50;
-  /* border-radius: 12px; */
   width: 100%;
 }
 
@@ -67,7 +79,6 @@ nav ul li {
   color: var(--nav-text);
   letter-spacing: 0.2px;
 }
-
 
 .navbtns {
   display: flex;
@@ -94,6 +105,20 @@ nav ul li {
   background: rgba(247, 244, 239, 0.08);
 }
 
+/* Logout button — amber filled, swaps on hover */
+.Adminloginbtn.logout {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #fff;
+  font-weight: 500;
+}
+
+.Adminloginbtn.logout:hover {
+  background: var(--nav-bg);
+  border-color: var(--amber);
+  color: var(--nav-text);
+}
+
 .sectionline {
   border: none;
   border-bottom: 1px solid var(--border);
@@ -104,6 +129,8 @@ nav ul li {
   max-width: 988px;
   margin: 0 auto;
   padding: 20px 20px;
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Section Labels ──────────────────────────────────── */
@@ -135,6 +162,7 @@ nav ul li {
   padding: 16px 14px;
   text-align: center;
   transition: border-color 0.15s;
+  box-shadow: 0 2px 14px rgba(26, 22, 18, 0.09);
 }
 
 .Admincard:hover {
@@ -174,6 +202,7 @@ nav ul li {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  box-shadow: 0 2px 14px rgba(26, 22, 18, 0.09);
 }
 
 /* ── Queue Status Row ────────────────────────────────── */
@@ -269,6 +298,7 @@ nav ul li {
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 12px;
+  box-shadow: 0 2px 14px rgba(26, 22, 18, 0.09);
 }
 
 .queueheading {
@@ -294,7 +324,7 @@ nav ul li {
 .queuecard-header {
   background-color: #472509;
   border-radius: 8px 8px 0 0;
-   pointer-events: none;
+  pointer-events: none;
 }
 
 .queuecard-header .token { color: var(--amber); }
@@ -314,6 +344,7 @@ nav ul li {
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 24px;
+  box-shadow: 0 2px 14px rgba(26, 22, 18, 0.09);
 }
 
 .ControlsecHeading {
@@ -331,33 +362,88 @@ nav ul li {
   gap: 10px;
 }
 
+/* Base button reset */
 .Controlbtns {
-  background: var(--surface-2);
   padding: 12px 16px;
-  color: var(--ink-2);
   border-radius: 8px;
   font-size: 13px;
   font-family: 'Geist', sans-serif;
   font-weight: 500;
   text-align: center;
-  border: 1px solid var(--border);
   cursor: pointer;
   transition: all 0.15s ease;
   letter-spacing: 0.2px;
-  color: #1A1612;
+  border: none;
 }
 
 .Controlbtns:hover {
-  background: var(--ink);
-  color: var(--nav-text);
-  border-color: var(--ink);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(26, 22, 18, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(26, 22, 18, 0.15);
 }
 
 .Controlbtns:active {
   transform: translateY(0);
   box-shadow: none;
+}
+
+/* next — dark ink, hover → amber */
+.Controlbtns.btn-next {
+  background: var(--ink);
+  color: var(--nav-text);
+}
+
+.Controlbtns.btn-next:hover {
+  background: var(--amber);
+  color: #fff;
+}
+
+/* hold — amber filled */
+.Controlbtns.btn-hold {
+  background: var(--amber);
+  color: #fff;
+}
+
+.Controlbtns.btn-hold:hover {
+  background: var(--amber-dark);
+}
+
+/* resume — neutral, hover → ink */
+.Controlbtns.btn-resume {
+  background: var(--surface-2);
+  color: var(--ink);
+  border: 1px solid var(--border-dark);
+}
+
+.Controlbtns.btn-resume:hover {
+  background: var(--ink);
+  color: var(--nav-text);
+  border-color: var(--ink);
+}
+
+/* skip — neutral, hover → ink */
+.Controlbtns.btn-skip {
+  background: var(--surface-2);
+  color: var(--ink);
+  border: 1px solid var(--border-dark);
+}
+
+.Controlbtns.btn-skip:hover {
+  background: var(--ink);
+  color: var(--nav-text);
+  border-color: var(--ink);
+}
+
+/* reset — red outline only */
+.Controlbtns.btn-reset {
+  background: transparent;
+  color: var(--red);
+  border: 1px solid #E8C0B4;
+}
+
+.Controlbtns.btn-reset:hover {
+  background: var(--red-faint);
+  border-color: var(--red);
+  transform: translateY(-2px);
 }
 
 /* ── Popup / Overlay ─────────────────────────────────── */
@@ -435,6 +521,7 @@ nav ul li {
   background: var(--surface-2);
 }
 
+/* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 768px) {
   nav { padding: 0 16px; }
   .logo { font-size: 16px; }
@@ -457,24 +544,25 @@ nav ul li {
   }
 
   .queuecard-header {
-    background:#472509  !important;
+    background: #472509 !important;
     border-radius: 8px 8px 0 0;
     padding: 10px 12px;
-    color:#e1dad4;
+    color: #e1dad4;
   }
+
   .queuecard-header:hover {
-  background: #472509 !important;
-  border-color: transparent !important;
-}
+    background: #472509 !important;
+    border-color: transparent !important;
+  }
 
   .queuecard-header .token,
   .queuecard-header .name,
   .queuecard-header .status,
   .queuecard-header .counter {
-    color:  #e1dad4!important;
+    color: #e1dad4 !important;
     font-size: 12px;
   }
-  
+
   .formoverlay { align-items: center; }
 
   .formsheet {
