@@ -166,7 +166,27 @@ nav ul {
   transition: all 0.15s ease;
   box-shadow: 0 2px 8px rgba(26,22,18,0.15);
 }
-
+.backbtn{
+ width: 100%;
+  background: var(--ink);
+  color: var(--nav-text);
+  border: none;
+  border-radius: 8px;
+  padding: 13px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Geist', sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.2px;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 8px rgba(26,22,18,0.15);
+  gap:5px;
+}
+.backbtn:hover {
+  background: #2C2820;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(26,22,18,0.2);
+}
 .login-btn:hover {
   background: #2C2820;
   transform: translateY(-1px);
